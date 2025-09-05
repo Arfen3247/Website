@@ -3,19 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>First Page</title>
+    <style>
+      img {
+        width: 200px;
+        border-radius: 100px;
+      }
+    </style>
   </head>
 
   <body>
     <h1>Hello World!</h1>
-    <p>This is the first page of the website.</p>
+
+    <p>Congratulations! You have found my attempt at a personal homepage!</p>
+
+    <p>
+      I am already tired of having half a dozen online accounts, so my plan is
+      it have everything link to and from here. This will take a while. In the
+      meantime, meet my doggo:
+    </p>
+
+    <img src="images/Rolo.jpg" alt="Rolo" />
   </body>
 
-  <body>
-    This will eventually become a full website.
-  </body>
-
-  <body>
-    <img src="images/Rolo.jpg" />
-  </body>
+  <div id="footer"></div>
+  <script>
+    fetch("footer.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        document.getElementById("footer").innerHTML = text;
+      });
+  </script>
 </html>

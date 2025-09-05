@@ -1,0 +1,22 @@
+body {
+	line-height: 1;
+	color: rgb(227, 227, 227);
+    background-color: rgb(51, 51, 51);
+	margin: 0;
+	padding: 0;
+	border: 0; 
+	font-family: Arial, sans-serif;
+
+}
+
+footer {
+  color: rgb(100, 100, 100);
+  background-color: rgb(51, 51, 51);
+  text-align: center;
+  padding: 1em 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9em;
+}
