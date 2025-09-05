@@ -4,14 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>First Page</title>
-    <style>
-      img {
-        width: 200px;
-        border-radius: 100px;
-      }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Home</title>
   </head>
+
+  <!-- Menu -->
+  <div id="header"></div>
+  <script>
+    fetch("header.txt")
+      .then((r) => r.text())
+      .then((t) => {
+        document.getElementById("header").innerHTML = t;
+      });
+  </script>
 
   <body>
     <h1>Hello World!</h1>
@@ -24,15 +29,19 @@
       meantime, meet my doggo:
     </p>
 
-    <img src="images/Rolo.jpg" alt="Rolo" />
+    <img
+      src="images/Rolo.jpg"
+      alt="Rolo"
+      style="width: 200px; border-radius: 100px"
+    />
   </body>
 
+  <!-- Footer -->
   <div id="footer"></div>
   <script>
     fetch("footer.txt")
-      .then((response) => response.text())
-      .then((text) => {
-        document.getElementById("footer").innerHTML = text;
-      });
+      .then((r) => r.text())
+      .then((t) => (document.getElementById("footer").innerHTML = t));
   </script>
+  <div id="footer"></div>
 </html>
