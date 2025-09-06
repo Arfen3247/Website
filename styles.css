@@ -1,11 +1,24 @@
 body {
-	line-height: 1;
-	color: rgb(227, 227, 227);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+	  line-height: 1;
+	  color: rgb(227, 227, 227);
     background-color: rgb(51, 51, 51);
-	margin: 0;
-	padding: 0;
-	border: 0; 
+	  margin: 0em;
+    margin-left: 10em;
+    margin-right: 10em;
+	  padding: 0em;
+	  border: 0; 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+
+
+
+#footer {
+  margin-top: auto;
 }
 
 footer {
@@ -13,17 +26,23 @@ footer {
   background-color: rgb(51, 51, 51);
   text-align: center;
   padding: 1em 0;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
   font-size: 0.9em;
 }
 
 
+a {
+  color:  rgb(100, 175, 255);
+}
+
 
 
 /* menu */
+nav {
+  margin: 0em;
+  margin-left: -10em;
+  margin-right: -10em;  
+  margin-bottom: 2em;
+}
 
 nav ul.nav-bar {
   list-style: none;
@@ -31,7 +50,6 @@ nav ul.nav-bar {
   padding: 0;
   display: flex;
   background: #222;
-  border-radius: 4px;
 }
 
 nav ul.nav-bar li {
@@ -48,4 +66,26 @@ nav ul.nav-bar li a {
 
 nav ul.nav-bar li a:hover {
   background: #444;
+}
+
+
+
+.centered-asterisk {
+  position: relative;
+  top: 0.15em;
+  font-size: 1em;
+  /* Adjust as needed */
+  line-height: 1em;
+}
+
+
+.flex-container {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+}
+
+.flex-text,
+.flex-image {
+  box-sizing: border-box;
 }

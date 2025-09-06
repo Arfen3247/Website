@@ -7,18 +7,18 @@
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>Home</title>
   </head>
-
-  <!-- Menu -->
-  <div id="header"></div>
-  <script>
-    fetch("header.txt")
-      .then((r) => r.text())
-      .then((t) => {
-        document.getElementById("header").innerHTML = t;
-      });
-  </script>
-
   <body>
+    <!-- Menu -->
+    <div id="header"></div>
+    <script>
+      fetch("header.txt")
+        .then((r) => r.text())
+        .then((t) => {
+          document.getElementById("header").innerHTML = t;
+        });
+    </script>
+
+    <!-- ... page content ... -->
     <h1>Hello World!</h1>
 
     <p>Congratulations! You have found my attempt at a personal homepage!</p>
@@ -34,14 +34,16 @@
       alt="Rolo"
       style="width: 200px; border-radius: 100px"
     />
-  </body>
 
-  <!-- Footer -->
-  <div id="footer"></div>
-  <script>
-    fetch("footer.txt")
-      .then((r) => r.text())
-      .then((t) => (document.getElementById("footer").innerHTML = t));
-  </script>
-  <div id="footer"></div>
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+      fetch("footer.txt")
+        .then((r) => r.text())
+        .then((t) => {
+          document.getElementById("footer").innerHTML = t;
+        });
+    </script>
+  </body>
 </html>

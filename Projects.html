@@ -1,0 +1,27 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <!-- Menu -->
+    <div id="header"></div>
+
+    <h1>Under Construction!</h1>
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script>
+      fetch("header.txt")
+        .then((r) => r.text())
+        .then((t) => {
+          document.getElementById("header").innerHTML = t;
+        });
+
+      fetch("footer.txt")
+        .then((r) => r.text())
+        .then((t) => (document.getElementById("footer").innerHTML = t));
+    </script>
+  </body>
+</html>

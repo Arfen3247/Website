@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,25 +5,23 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
+  <body>
+    <!-- Menu -->
+    <div id="header"></div>
 
-  <!-- Menu -->
-  <div id="header"></div>
-  <script>
-    fetch("header.txt")
-      .then((r) => r.text())
-      .then((t) => {
-        document.getElementById("header").innerHTML = t;
-      });
-  </script>
+    <h1>Under Construction!</h1>
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script>
+      fetch("header.txt")
+        .then((r) => r.text())
+        .then((t) => {
+          document.getElementById("header").innerHTML = t;
+        });
 
-  <body></body>
-
-  <!-- Footer -->
-  <div id="footer"></div>
-  <script>
-    fetch("footer.txt")
-      .then((r) => r.text())
-      .then((t) => (document.getElementById("footer").innerHTML = t));
-  </script>
-  <div id="footer"></div>
+      fetch("footer.txt")
+        .then((r) => r.text())
+        .then((t) => (document.getElementById("footer").innerHTML = t));
+    </script>
+  </body>
 </html>
