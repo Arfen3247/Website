@@ -1,49 +1,57 @@
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-	  line-height: 1;
-	  color: rgb(227, 227, 227);
-    background-color: rgb(51, 51, 51);
-	  margin: 0em;
-    margin-left: 10em;
-    margin-right: 10em;
-	  padding: 0em;
-	  border: 0; 
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1;
+  color: rgb(255, 255, 255);
+  background-color: rgb(50, 50, 50);
+  margin: 0em;
+  padding: 0em;
+  border: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+section {
+  padding-top: 1em;
+}
 
+/* on wide screen, have a wide margin */
+@media screen and (min-width: 1000px) {
+  section {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
+  img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
-
-#footer {
-  margin-top: auto;
+/* on narrow screen, have small/no margin */
+@media screen and (min-width: 500px) {
+  img {
+    width: auto;
+  }
 }
 
 footer {
   color: rgb(100, 100, 100);
-  background-color: rgb(51, 51, 51);
+  background-color: rgb(50, 50, 50);
   text-align: center;
-  padding: 1em 0;
-  font-size: 0.9em;
+  font-size: small;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 48px;
+  padding: 10px;
+  min-height: 30px;
+  flex-shrink: 0;
 }
 
-
+/* link colour */
 a {
-  color:  rgb(100, 175, 255);
+  color: rgb(100, 175, 255);
 }
-
-
 
 /* menu */
-nav {
-  margin: 0em;
-  margin-left: -10em;
-  margin-right: -10em;  
-  margin-bottom: 2em;
-}
-
 nav ul.nav-bar {
   list-style: none;
   margin: 0;
@@ -65,27 +73,13 @@ nav ul.nav-bar li a {
 }
 
 nav ul.nav-bar li a:hover {
-  background: #444;
+  background: #e40505;
 }
 
-
-
+/* solely to make f*ck look better lol */
 .centered-asterisk {
   position: relative;
   top: 0.15em;
   font-size: 1em;
-  /* Adjust as needed */
   line-height: 1em;
-}
-
-
-.flex-container {
-  display: flex;
-  gap: 2em;
-  align-items: flex-start;
-}
-
-.flex-text,
-.flex-image {
-  box-sizing: border-box;
 }
