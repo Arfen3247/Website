@@ -117,16 +117,28 @@
           <h3>Undergraduate II — Thermal Creation of Solitons</h3>
           <p>
             In 2024 (the third year of my undergraduate), my classmate
-            <a href="people.html">Cillian Grall</a> and I completed a project on
-            the thermal creation of solitons. These are long-surviving,
-            localised, non-linear wave-packets that appear in a scalar field
-            subject to a multi-welled potential, where part of the field spills
-            into another well. We focused on the simplest case, a
-            one-dimensional scalar field \(\phi\) with a double-welled quartic
+            <a href="https://www.linkedin.com/in/cillian-grall/"
+              >Cillian Grall</a
+            >
+            and I completed a project on the thermal creation of
+            <a href="https://en.wikipedia.org/wiki/Soliton"> solitons</a>. These
+            are long-surviving, localised, non-linear wave-packets that appear
+            in a scalar field subject to a multi-welled potential, where part of
+            the field spills into another well. Our setting is some scalar field
+            \(\phi(\vec{x},t)\) subject to the wave equation and a potential
+            well \(V(\phi)\),$$ \frac{\partial^2\phi}{\partial t^2} =
+            \nabla^2\phi - \frac{d V}{d\phi}.$$ We focused on the simplest case,
+            a one-dimensional scalar field \(\phi\) with a double-welled quartic
             potential \(V(\phi)=\lambda(\phi^2-1)^2\), where \(\lambda\) is a
             coupling parameter. The system was discretised and subjected to
-            periodic boundary conditions. For a range of temperatures, the
-            system was initialised using a
+            periodic boundary conditions. This discretised system then acts as a
+            pearl necklace, with each pearl moving with its own speed, being
+            pulled down the walls of the potential, and tugging on its
+            neighbours. Adding enough energy in the system allows some section
+            of the necklace to cross the divide into the other well. This forms
+            a large wave in the field whcih survives until the pearls happen to
+            spill back over — a soliton! For a range of temperatures, the system
+            was initialised using a
             <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">
               Markov Chain Monte Carlo</a
             >
@@ -145,12 +157,16 @@
           <h3>Undergraduate I — The Chaotic Inflationary Universe</h3>
           <p>
             In 2023 (the second year of my undergraduate), my classmates
-            <a href="people.html">Cillian Grall</a>,
-            <a href="people.html">Ciaran McNamara</a> and I completed a project
-            on the inflation of the early universe. There are properties of our
-            universe which seem unlikely, such as its apparent flatness, but
-            become credible if the universe underwent a huge spatial growth in a
-            short period of time. This idea is called
+            <a href="https://www.linkedin.com/in/cillian-grall/"
+              >Cillian Grall</a
+            >,
+            <a href="https://www.linkedin.com/in/ciaran-macnamara-66786b381/"
+              >Ciaran McNamara</a
+            >
+            and I completed a project on the inflation of the early universe.
+            There are properties of our universe which seem unlikely, such as
+            its apparent flatness, but become credible if the universe underwent
+            a huge spatial growth in a short period of time. This idea is called
             <a href="https://en.wikipedia.org/wiki/Cosmic_inflation"
               >Cosmic Inflation</a
             >. It is estimated that at least 60 e-folds of inflation must have
@@ -159,15 +175,14 @@
             Quite a lot! If we pick a pair of points in space, and track the
             distance between them over time, calling this function the cosmic
             scale factor \(a(t)\), we can interpret this as a measure of the
-            universe's size over time. In this project, we assumed a
-            one-dimensional universe of no spatial curvature and dominated by a
-            scalar field \(\phi(x,t)\). We also assumed the Friedman and
-            Klein-Gordon equations, $$H := \frac{\dot{a}}{a} =
+            universe's size over time. In this project, we assumed a flat
+            universe dominated by a scalar field \(\phi(t)\), obeying the
+            Friedman and Klein-Gordon equations, $$H := \frac{\dot{a}}{a} =
             C\sqrt{\frac{1}{2}\dot{\phi}^2 + V(\phi)}, \qquad
-            \ddot{\phi}+3H\dot{\phi}+\frac{dV}{d\phi}=0,$$ are satisified, where
-            \(C=M_p^{-1}\sqrt{\frac{8\pi}{3}}\) and \(M_p\) is the Planck
-            length. We focus on the simplest potential, the quadratic well
-            \(V(\phi)=\frac{1}{2}m\phi^2\). The Friedman equation causes \(a\)
+            \ddot{\phi}+3H\dot{\phi}+\frac{dV}{d\phi}=0,$$where
+            \(C=M_p^{-1}\sqrt{8\pi/3}\) and \(M_p\) is the Planck length. We
+            focus on the simplest potential, the quadratic well
+            \(V(\phi)=\frac{1}{2}m^2\phi^2\). The Friedman equation causes \(a\)
             to increase rapidly when \(\phi\) or \(\dot{\phi}\) are large. The
             Klein-Gordon equation causes \(\phi\) to act roughly like a damped
             oscillator, and decay towards the minimum of \(V\). Together, these
@@ -185,8 +200,8 @@
             and the report
             <a href="Files/Projects/Chaotic_Inflation_Report.pdf">here</a>.
             Looking back on it now, this project <s>was quite crap</s> could
-            have been done better. This was in our second year, so don't judge
-            it too harshly!
+            have been done better. But it was our first, so don't judge it too
+            harshly!
           </p>
         </li>
       </ul>
