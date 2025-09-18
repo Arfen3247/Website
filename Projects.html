@@ -13,200 +13,286 @@
     </nav>
 
     <section>
+      <h1>Personal Projects</h1>
       <p>
-        At the bottom of the page I discuss some projects completed for my
-        Bachelors and Masters. Before that, I'll link some projects of my own.
-        For now, these are all works in progress.
+        For now, these are all works in progress. The following are 'ready'
+        soon, I am in the process of writing them up.
       </p>
 
-      <h1>Personal Projects</h1>
-      <ul>
-        <li>
-          <h3>Rubik's Cube — Last Layer Lunatics</h3>
-          <p><b>ETA</b>: October, this is not a priority lol</p>
-          <p>
-            While I am no longer a speedcuber, from time to time I still fidget
-            with and think about Rubik's cubes. The last step in many method of
-            solving the cube is the last layer. There are in essence 4
-            objectives: to orient and permute the corners and edges. While more
-            advanced methods can complete more than one of these objectives in
-            single stages, many beginner's methods are split into these 4
-            stages, using some algorithm to complete each. This is called
-            '4-look last layer', or 4LLL, and is really the minimum number of
-            algorithms required to solve the cube. These algorithms essentially
-            give a directed graph structure to the set of states of the last
-            layer. A true beginner may not know how to efficiently traverse this
-            graph, and may choose paths which loop back on themselves. With
-            experience, one learns to distinguish between these states. However,
-            by this time, one learns more algorithms to deal with these cases in
-            a more efficient way, moving towards a faster 2LLL method and
-            removing the need for efficient graph traversal. My question is then
-            this rather unimportant one: how move-efficient can you get using
-            only the 4LLL algorithms? On this graph structure they define, what
-            are the optimal paths to the solved state, and what is the average
-            number of moves required? Answering these questions can be done
-            using a Breadth-First Search backwards from the solved state, which
-            can be implemented in a quick python script...
-          </p>
-        </li>
-        <li>
-          <h3>Contour Integration as a Root-Finding Method</h3>
-          <p>TLDR: This is a really bad method.</p>
-        </li>
-        <li>
-          <h3>A Numberplate Game</h3>
-          <p>Coming soon to a car near you.</p>
-        </li>
-        <li>
-          <h3>VAMPs — Violators of A Monotonic Property</h3>
-          <p>
-            I was feeling particularly like a cosmologist when I named this. For
-            a family of enumeration problems, constructs an algorithm based on a
-            Trie structure, which has significantly improved time complexity at
-            the cost of storing the structure. (Useless in practice, as the main
-            ceiling for such problems is the space complecity, but I find it
-            interesting in theory).
-          </p>
-          <p>
-            Coming soon, but for now, can <i>you</i> figure out what these
-            numbers have in common??
-          </p>
-          <img
-            src="images/Project/Trees/tree_basic.jpg"
-            alt="tree_basic"
-            style="width: 300px"
-          />
-          <p>
-            This is an 'efficient' way of storing the strings
-            1,2,3,12,13,21,23,31,32,131,212,232,313,323, but there is a better
-            reason later. Note that '323' is on the tree, and so is '23'...
-          </p>
-        </li>
-      </ul>
+      <button class="accordion_cover">
+        <h3>Coin Flipping in an Interval</h3>
+      </button>
+      <div class="accordion_panel">
+        <p>An interesting probability question I worked on!</p>
+      </div>
+
+      <button class="accordion_cover">
+        <h3>A Numberplate Game</h3>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          Here is a game a friend taught me on the drive to university, that
+          spawned some questions I answered by using python.
+        </p>
+        <h3>The Game</h3>
+        <p>
+          A <b>digit string</b> is an ordered list of numbers (integers from 0
+          to 9 in our case), such as 15397. This is not to be interpreted as
+          fifteen thousand three hundred and ninety seven, but as one followed
+          by five, three, nine, and seven.
+        </p>
+        <p>
+          \(1\times (5-3)+9\div 7\) is an <b>expression</b> of the digit string
+          15397. Between the digits we place some operation from addition,
+          subtraction, multiplication and division. We are allowed to use an
+          operation as many times as we like (including not at all), to use as
+          many parentheses as we like, but we cannot reorder the digits and
+          every two digits must have an operation between them.
+        </p>
+        <p>
+          A <b>solution</b> of the digit string is some expression that
+          evaluates to zero. Note that \(9-9\), \(1+2-3\), \(8-2\times 4\) and
+          \(2-6\div (1+2)\) are solutions of 99, 123, 824 and 2612 respectively.
+          Clearly any digit string which contains a zero can be solved using
+          only multiplications. Eg. \(5\times0\times3\) is a solution of 503.
+          \(1\times (5-3)+9\div 7\) is clearly not a solution to 15397, but can
+          you find one? <span class="spoiler">\((1+5+3-9)\times7\)</span>
+        </p>
+        <p>
+          Given some source of digit strings, the game is to be the first to
+          find a solution. For example, Irish vehicle registration plates
+          (numberplates) take the form 162-D-15397. On the drive to university,
+          we would play the game on the other cars around us. I won slightly
+          more often (he was driving).
+        </p>
+        <h3>Some questions</h3>
+        <p>
+          Firstly, how many digit strings can be solved? This answer is quite
+          clearly infinity. Since 11 is solvable, so is anything that contains
+          11, such as 4627115, of which there are infinitely many. The second
+          question is less obvious.
+        </p>
+        <p>
+          Some strings cannot be solved. For example, 1, 12, 124, 8985. How many
+          cannot be solved? As strings get longer, it becomes easier to solve
+          them, so we expect the unsolvable strings to get increasingly rare.
+          But, are there only finitely many of them? If so, what is the largest
+          of them? Have a think about it.
+        </p>
+      </div>
+
+      <p>
+        The following are nowhere near ready, so don't expect an update anytime
+        soon.
+      </p>
+
+      <button class="accordion_cover">
+        <h3>VAMPs — Violators of A Monotonic Property</h3>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          I was feeling particularly like a cosmologist when I named this :)
+          There is a family of enumeration problems such as the Numberplate Game
+          above, where the digit strings we are looking for naturally form a
+          Trie structure. Instead of searching through all digit strings, we
+          need only search through this tree. For example, by depth-first or
+          breadth-first seacrhes, which have their own advantages.
+        </p>
+        <img
+          src="images/Project/Trees/tree_basic.jpg"
+          alt="tree_basic"
+          style="width: 300px"
+        />
+        <p>
+          I am interested in the breadth-first approach. At the cost of holding
+          the whole Trie in memory, we can construct an enumeration algorithm
+          with significantly improved time complexity. Admittedly, in most cases
+          this is largely useless, as the memory cost gives a ceiling to how
+          many terms of the sequence can be reached. The ones it does reach
+          though, it reaches far faster than similar methods.
+        </p>
+
+        <p>
+          This serves as a sequel to the Numberplate Game above, so I'll finish
+          that first!
+        </p>
+      </div>
+
+      <button class="accordion_cover">
+        <h3>Rubik's Cube — Last Layer Lunatics</h3>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          While I am no longer a speedcuber, from time to time I still fidget
+          with and think about Rubik's cubes. The last step in many method of
+          solving the cube is the last layer. There are in essence 4 objectives:
+          to orient and permute the corners and edges. While more advanced
+          methods can complete more than one of these objectives in single
+          stages, many beginner's methods are split into these 4 stages, using
+          some algorithm to complete each. This is called '4-look last layer',
+          or 4LLL, and is really the minimum number of algorithms required to
+          solve the cube. These algorithms essentially give a directed graph
+          structure to the set of states of the last layer. A true beginner may
+          not know how to efficiently traverse this graph, and may choose paths
+          which loop back on themselves. With experience, one learns to
+          distinguish between these states. However, by this time, one learns
+          more algorithms to deal with these cases in a more efficient way,
+          moving towards a faster 2LLL method and removing the need for
+          efficient graph traversal. My question is then this rather unimportant
+          one: how move-efficient can you get using only the 4LLL algorithms? On
+          this graph structure they define, what are the optimal paths to the
+          solved state, and what is the average number of moves required?
+          Answering these questions can be done using a Breadth-First Search
+          backwards from the solved state, which can be implemented in a quick
+          python script...
+        </p>
+      </div>
+
+      <button class="accordion_cover">
+        <h3>Contour Integration as a Root-Finding Method</h3>
+      </button>
+      <div class="accordion_panel">
+        <p>TLDR: This is a really bad method.</p>
+      </div>
 
       <h1>University Projects</h1>
 
-      <ul>
-        <li>
-          <h3>Postgraduate — Kernel Density Estimation</h3>
-          <p>
-            In the summer of 2025 I completed a research project in Mathematics
-            as the last third of my Master's degree. This consisted of a
-            <a href="Files/Projects/MSc_Thesis_Adam.pdf">thesis</a> and a
-            <a href="Files/Projects/MSc_Presentation_Adam.pdf">presentation</a>.
-            For this, I studied Kernel Density Estimation. This is a method in
-            non-parametric statistics to recover a probability density function
-            from a sample, without placing restrictive assumptions on the
-            density. In particular, I studied the convergence rates of these
-            estimators, under some regularity assumptions on the density. The
-            thesis is split into two parts. The first explores the problem in
-            the classic setting, on the real line, and follows
-            <a href="https://link.springer.com/book/10.1007/b13794"
-              >this book</a
-            >
-            by Tsybakov. The second half considers the problem on more general
-            metric spaces and catches up to some modern research done by my
-            supervisor
-            <a href="https://sites.google.com/site/galatiacleanthous/home"
-              >Dr. Galatia Cleanthous</a
-            >
-            and her collaborators. This project earned a grade of 91%.
-          </p>
-        </li>
-        <li>
-          <h3>Undergraduate II — Thermal Creation of Solitons</h3>
-          <p>
-            In 2024 (the third year of my undergraduate), my classmate
-            <a href="https://www.linkedin.com/in/cillian-grall/"
-              >Cillian Grall</a
-            >
-            and I completed a project on the thermal creation of
-            <a href="https://en.wikipedia.org/wiki/Soliton"> solitons</a>. These
-            are long-surviving, localised, non-linear wave-packets that appear
-            in a scalar field subject to a multi-welled potential, where part of
-            the field spills into another well. Our setting is some scalar field
-            \(\phi(\vec{x},t)\) subject to the wave equation and a potential
-            well \(V(\phi)\),$$ \frac{\partial^2\phi}{\partial t^2} =
-            \nabla^2\phi - \frac{d V}{d\phi}.$$ We focused on the simplest case,
-            a one-dimensional scalar field \(\phi\) with a double-welled quartic
-            potential \(V(\phi)=\lambda(\phi^2-1)^2\), where \(\lambda\) is a
-            coupling parameter. The system was discretised and subjected to
-            periodic boundary conditions. This discretised system then acts as a
-            pearl necklace, with each pearl moving with its own speed, being
-            pulled down the walls of the potential, and tugging on its
-            neighbours. Adding enough energy in the system allows some section
-            of the necklace to cross the divide into the other well. This forms
-            a large wave in the field whcih survives until the pearls happen to
-            spill back over — a soliton! For a range of temperatures, the system
-            was initialised using a
-            <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">
-              Markov Chain Monte Carlo</a
-            >
-            approach, called the Heat Bath Algorithm. (This was quite difficult,
-            and I am still hugely proud of it.) The system was then evolved
-            simply using the finite difference method, and the creation rate of
-            solitons was calculated, and graphed against temperature. The code
-            can be found
-            <a href="https://github.com/Arfen3247/Solitons">here</a>, and the
-            report
-            <a href="Files/Projects/Kink_Anti_kink_creation.pdf">here</a>. This
-            project earned a grade of 87%.
-          </p>
-        </li>
-        <li>
-          <h3>Undergraduate I — The Chaotic Inflationary Universe</h3>
-          <p>
-            In 2023 (the second year of my undergraduate), my classmates
-            <a href="https://www.linkedin.com/in/cillian-grall/"
-              >Cillian Grall</a
-            >,
-            <a href="https://www.linkedin.com/in/ciaran-macnamara-66786b381/"
-              >Ciaran McNamara</a
-            >
-            and I completed a project on the inflation of the early universe.
-            There are properties of our universe which seem unlikely, such as
-            its apparent flatness, but become credible if the universe underwent
-            a huge spatial growth in a short period of time. This idea is called
-            <a href="https://en.wikipedia.org/wiki/Cosmic_inflation"
-              >Cosmic Inflation</a
-            >. It is estimated that at least 60 e-folds of inflation must have
-            occurred. That is to say, points in space 1 unit apart would be
-            separated by \(e^{60}\approx 10^{26}\) units after some finite time.
-            Quite a lot! If we pick a pair of points in space, and track the
-            distance between them over time, calling this function the cosmic
-            scale factor \(a(t)\), we can interpret this as a measure of the
-            universe's size over time. In this project, we assumed a flat
-            universe dominated by a scalar field \(\phi(t)\), obeying the
-            Friedman and Klein-Gordon equations, $$H := \frac{\dot{a}}{a} =
-            C\sqrt{\frac{1}{2}\dot{\phi}^2 + V(\phi)}, \qquad
-            \ddot{\phi}+3H\dot{\phi}+\frac{dV}{d\phi}=0,$$where
-            \(C=M_p^{-1}\sqrt{8\pi/3}\) and \(M_p\) is the Planck length. We
-            focus on the simplest potential, the quadratic well
-            \(V(\phi)=\frac{1}{2}m^2\phi^2\). The Friedman equation causes \(a\)
-            to increase rapidly when \(\phi\) or \(\dot{\phi}\) are large. The
-            Klein-Gordon equation causes \(\phi\) to act roughly like a damped
-            oscillator, and decay towards the minimum of \(V\). Together, these
-            causes \(\phi\) to slowly settle towards the minimum and \(a\) to
-            grow until that time. This leads to a finite period of time where
-            intense growth is observed — cosmic inflation! Choosing some inital
-            conditions of \(\phi\) and \(\dot{\phi}\), the system can be evolved
-            over time (using an ODE solver) to see how much inflation occurs. In
-            this project, we explored which initial conditions of led to a
-            sufficient amount of inflation, finding this is easier than expected
-            under our simple model. We also attempted to study the impact of the
-            mass parameter \(m\), and even some different potentials \(V\). The
-            Python code can be found
-            <a href="https://github.com/Arfen3247/Chaotic-Inflation">here</a>,
-            and the report
-            <a href="Files/Projects/Chaotic_Inflation_Report.pdf">here</a>.
-            Looking back on it now, this project <s>was quite crap</s> could
-            have been done better. But it was our first, so don't judge it too
-            harshly!
-          </p>
-        </li>
-      </ul>
+      <button class="accordion_cover">
+        <h3>Master's Thesis — Kernel Density Estimation</h3>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          In the summer of 2025 I completed a research project in Mathematics as
+          the last third of my Master's degree. This consisted of a
+          <a href="Files/Projects/MSc_Thesis_Adam.pdf">thesis</a> and a
+          <a href="Files/Projects/MSc_Presentation_Adam.pdf">presentation</a>.
+          For this, I studied Kernel Density Estimation. This is a method in
+          non-parametric statistics to recover a probability density function
+          from a sample, without placing restrictive assumptions on the density.
+          In particular, I studied the convergence rates of these estimators,
+          under some regularity assumptions on the density. The thesis is split
+          into two parts. The first explores the problem in the classic setting,
+          on the real line, and follows
+          <a href="https://link.springer.com/book/10.1007/b13794">this book</a>
+          by Tsybakov. The second half considers the problem on more general
+          metric spaces and catches up to some modern research done by my
+          supervisor
+          <a href="https://sites.google.com/site/galatiacleanthous/home"
+            >Dr. Galatia Cleanthous</a
+          >
+          and her collaborators. This project earned a grade of 91%.
+        </p>
+      </div>
+      <button class="accordion_cover">
+        <h3>Undergraduate II — Thermal Creation of Solitons</h3>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          In 2024 (the third year of my undergraduate), my classmate
+          <a href="https://www.linkedin.com/in/cillian-grall/">Cillian Grall</a>
+          and I completed a project on the thermal creation of
+          <a href="https://en.wikipedia.org/wiki/Soliton"> solitons</a>. These
+          are long-surviving, localised, non-linear wave-packets that appear in
+          a scalar field subject to a multi-welled potential, where part of the
+          field spills into another well. Our setting is some scalar field
+          \(\phi(\vec{x},t)\) subject to the wave equation and a potential well
+          \(V(\phi)\),$$ \frac{\partial^2\phi}{\partial t^2} = \nabla^2\phi -
+          \frac{d V}{d\phi}.$$ We focused on the simplest case, a
+          one-dimensional scalar field \(\phi\) with a double-welled quartic
+          potential \(V(\phi)=\lambda(\phi^2-1)^2\), where \(\lambda\) is a
+          coupling parameter. The system was discretised and subjected to
+          periodic boundary conditions. This discretised system then acts as a
+          pearl necklace, with each pearl moving with its own speed, being
+          pulled down the walls of the potential, and tugging on its neighbours.
+          Adding enough energy in the system allows some section of the necklace
+          to cross the divide into the other well. This forms a large wave in
+          the field whcih survives until the pearls happen to spill back over —
+          a soliton! For a range of temperatures, the system was initialised
+          using a
+          <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">
+            Markov Chain Monte Carlo</a
+          >
+          approach, called the Heat Bath Algorithm. (This was quite difficult,
+          and I am still hugely proud of it.) The system was then evolved simply
+          using the finite difference method, and the creation rate of solitons
+          was calculated, and graphed against temperature. The code can be found
+          <a href="https://github.com/Arfen3247/Solitons">here</a>, and the
+          report <a href="Files/Projects/Kink_Anti_kink_creation.pdf">here</a>.
+          This project earned a grade of 87%.
+        </p>
+      </div>
+      <button class="accordion_cover">
+        <h3>Undergraduate I — The Chaotic Inflationary Universe</h3>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          In 2023 (the second year of my undergraduate), my classmates
+          <a href="https://www.linkedin.com/in/cillian-grall/">Cillian Grall</a
+          >,
+          <a href="https://www.linkedin.com/in/ciaran-macnamara-66786b381/"
+            >Ciaran McNamara</a
+          >
+          and I completed a project on the inflation of the early universe.
+          There are properties of our universe which seem unlikely, such as its
+          apparent flatness, but become credible if the universe underwent a
+          huge spatial growth in a short period of time. This idea is called
+          <a href="https://en.wikipedia.org/wiki/Cosmic_inflation"
+            >Cosmic Inflation</a
+          >. It is estimated that at least 60 e-folds of inflation must have
+          occurred. That is to say, points in space 1 unit apart would be
+          separated by \(e^{60}\approx 10^{26}\) units after some finite time.
+          Quite a lot! If we pick a pair of points in space, and track the
+          distance between them over time, calling this function the cosmic
+          scale factor \(a(t)\), we can interpret this as a measure of the
+          universe's size over time. In this project, we assumed a flat universe
+          dominated by a scalar field \(\phi(t)\), obeying the Friedman and
+          Klein-Gordon equations, $$H := \frac{\dot{a}}{a} =
+          C\sqrt{\frac{1}{2}\dot{\phi}^2 + V(\phi)}, \qquad
+          \ddot{\phi}+3H\dot{\phi}+\frac{dV}{d\phi}=0,$$where
+          \(C=M_p^{-1}\sqrt{8\pi/3}\) and \(M_p\) is the Planck length. We focus
+          on the simplest potential, the quadratic well
+          \(V(\phi)=\frac{1}{2}m^2\phi^2\). The Friedman equation causes \(a\)
+          to increase rapidly when \(\phi\) or \(\dot{\phi}\) are large. The
+          Klein-Gordon equation causes \(\phi\) to act roughly like a damped
+          oscillator, and decay towards the minimum of \(V\). Together, these
+          causes \(\phi\) to slowly settle towards the minimum and \(a\) to grow
+          until that time. This leads to a finite period of time where intense
+          growth is observed — cosmic inflation! Choosing some inital conditions
+          of \(\phi\) and \(\dot{\phi}\), the system can be evolved over time
+          (using an ODE solver) to see how much inflation occurs. In this
+          project, we explored which initial conditions of led to a sufficient
+          amount of inflation, finding this is easier than expected under our
+          simple model. We also attempted to study the impact of the mass
+          parameter \(m\), and even some different potentials \(V\). The Python
+          code can be found
+          <a href="https://github.com/Arfen3247/Chaotic-Inflation">here</a>, and
+          the report
+          <a href="Files/Projects/Chaotic_Inflation_Report.pdf">here</a>.
+          Looking back on it now, this project <s>was quite crap</s> could have
+          been done better. But it was our first, so don't judge it too harshly!
+        </p>
+      </div>
     </section>
 
+    <!-- Footer -->
     <footer>&copy; Adam Furlong September 2025. All rights reserved.</footer>
   </body>
+
+  <!-- Accordion -->
+  <script>
+    var acc = document.getElementsByClassName("accordion_cover");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+  </script>
 </html>

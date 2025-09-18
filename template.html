@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+  </head>
+  <body>
+    <!-- Menu -->
+    <nav>
+      <ul class="nav-bar">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h1>Under Construction!</h1>
+      <p>
+        Unfortunately you have reached a deadend. The link I gave you was not
+        ready yet. Sorry.
+      </p>
+      <p>
+        Please check back soon. If it has been a while, please contact me
+        <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0">here</a> to remind
+        me!
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>&copy; Adam Furlong September 2025. All rights reserved.</footer>
+  </body>
+
+  <!-- Accordion -->
+  <script>
+    var acc = document.getElementsByClassName("accordion_cover");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+  </script>
+</html>

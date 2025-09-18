@@ -55,6 +55,7 @@ img.centre{display: block;
   margin-right: auto;
 }
 
+
 /* menu */
 nav ul.nav-bar {
   list-style: none;
@@ -63,8 +64,6 @@ nav ul.nav-bar {
   display: flex;
   background: #222;
 }
-
-
 
 ul.nav-bar li a {
   display: block;
@@ -77,3 +76,41 @@ ul.nav-bar li a {
 ul.nav-bar li a:hover {
   background: #cc0404;
 }
+
+
+/* Accordion, drop-down section */
+.accordion_cover {
+  background-color: #222;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding-left: 50 px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Style the accordion panel.  */
+.accordion_panel {
+  padding: 0 18px;
+  background-color: rgb(50, 50, 50);
+  display: none;
+  overflow: hidden;
+}
+
+
+/* Spoilers */
+.spoiler{
+  display: inline;
+  color: black;
+  background-color: black;
+}
+
+.spoiler:hover {
+  color: white;
+}
+
+
+
+
