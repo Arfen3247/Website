@@ -9,6 +9,12 @@ body {
 }
 
 
+/* centre some algorithms */
+.thin_centre {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* on wide screen, have a wide margin */
 @media screen and (min-width: 1000px) {
@@ -22,6 +28,8 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
+
+    .thin_centre{width: 50%}
 }
 
 /* on narrow screen, have small/no margin */
@@ -40,11 +48,11 @@ footer {
   background-color: rgb(50, 50, 50);
   text-align: center;
   font-size: small;
-  margin-top: 0px;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-/* link colour */
+/* link colour, standard is too dark*/
 a {
   color: rgb(100, 175, 255);
 }
@@ -54,6 +62,8 @@ img.centre{display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
+
 
 
 /* menu */

@@ -1,0 +1,281 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles.css" />
+    <!-- Allows  algorithms -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+          processEnvironments: true,
+        },
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js"></script>
+    <title>The Numberplate Game</title>
+  </head>
+  <nav>
+    <ul class="nav-bar">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../Projects.html">Projects</a></li>
+    </ul>
+  </nav>
+  <body>
+    <!-- Menu -->
+
+    <section>
+      <h1>The Numberplate Game</h1>
+
+      <p>some introduction</p>
+
+      <button class="accordion_cover">
+        <h2>Proof of Finiteness</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>coming soon</p>
+      </div>
+
+      <h1>Brute Force</h1>
+
+      <button class="accordion_cover">
+        <h2>Generating all expressions</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>coming soon</p>
+      </div>
+
+      <button class="accordion_cover">
+        <h2>Being Careful with Division</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          The string 13946 is particularly annoying to work with, but serves as
+          a good example. It can be solved by $1-3/9-4/6$. (In fact, this is the
+          only solution. It not only needs a division to be solved, it actually
+          needs 2!) You can see this is a solution, right? Well, Python can't...
+        </p>
+        $$\begin{aligned}>>>\text{print}(1-3/9-4/6) \\ 1.1102230246251565e-16
+        \end{aligned}$$
+        <p>
+          We must try to avoid these floating point errors somehow. Consider
+          working with pairs of integers $(a,b)$, for $b>0$ and
+          $\text{gcd}(a,b)=1$. In this language, $(a,b)$ is understood as $a/b$.
+          Then $(a,1)$ would be the integer $a$, and $(0,b)$ would be 0. These
+          are the rationals $\mathbb{Q}$, which are closed under the four
+          operations were are using.
+        </p>
+        $$\begin{aligned} (a,b)+(c,d) &= (a\times d+b\times c, b\times d) \\
+        (a,b)-(c,d) &= (a\times d-b\times c, b\times d) \\ (a,b)\times (c,d) &=
+        (a\times c, b\times d) \\ (a,b)\div(c,d) &= (a\times d, b\times c)
+        \end{aligned}$$
+        <p>
+          (At the end, remove common factors from the numerator and
+          denominator.) Of course, I'm not actually bothered to code all of that
+          up myself. There is a Python module called 'fractions' which does this
+          for us. You can read about it
+          <a href="https://docs.python.org/3/library/fractions.html">here</a>.
+          '$\text{Fraction}(a,b)$' is an object that behaves just like $(a,b)$
+          above. We never need to worry about floating point errors again!
+        </p>
+        <p>
+          Small note: yes, the expressions now take longer to compute. An
+          addition now requires 3 multiplications, an addition, and a gcd
+          calculation. We can salvage back some time, without sacrificing
+          accuracy, by using integer arithmetic when divisions are not involved.
+          Luckily for us, we already agreed to sort the expressions by the
+          number of divisions. This allows us to do all of our fast integer work
+          first, and then turn to the more expensive fractions approach.
+        </p>
+      </div>
+
+      <h1>Brute Force but Smarter</h1>
+      <p>
+        The basic idea is to add a series of increasingly expensive filters to
+        weed out digit strings that are solvable. This way not all of them need
+        to go through the more expensive tests, such as checking all of the
+        possible expressions.
+      </p>
+
+      <button class="accordion_cover">
+        <h2>Contains a Square? $\mathcal{O}\left(L^2\right)$</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          A square is a digit string of the form $'XX'$ for some string $'X'$.
+          For example, $11$, $2323$, $97349734$ are all squares. A square is
+          almost trivially solvable. Use any expression you like on both copies
+          of $'X'$, and place a minus sign between them. Our previous examples
+          are solved by, for example, $1-1$, $2\times3-2\times3$ and
+          $9\times(7+3\times4)-9\times(7+3\times4)$ respectively.
+        </p>
+        <p>
+          As you can imagine, checking if a string is a square is really cheap.
+        </p>
+        <button class="accordion_cover">
+          <h2>Naive Algorithm $\mathcal{O}\left(L^3\right)$</h2>
+        </button>
+        <div class="accordion_panel">
+          <div class="thin_centre">
+            <pre id="is_a_square" class="pseudocode" data-line-number="true">
+            \begin{algorithm}
+            \caption{Is Square}
+            \begin{algorithmic}
+            \FUNCTION{IsSquare}{$A$}
+                \STATE $L = \text{length}(A)$
+                \IF{$L$ is odd} 
+                    \RETURN \FALSE
+                \ENDIF
+                \FOR{$i = 0$ \TO $L/2 - 1$}
+                    \IF{\NOT $A[i] = A[L/2 + i]$}
+                        \RETURN \FALSE
+                    \ENDIF
+                \ENDFOR
+                \RETURN \TRUE
+            \ENDFUNCTION
+            \end{algorithmic}
+            \end{algorithm}
+        </pre
+            >
+          </div>
+          <p>
+            (How to put algorithm in HTML? Either do it elsewhere, save it as an
+            image, and insert the image. Or, use
+            <a href="https://github.com/SaswatPadhi/pseudocode.js">this</a>)
+          </p>
+          <p>
+            According to the above logic then, we can check if a digit string
+            contains a square in $\mathcal{O}(L^3)$ steps. This is massively
+            cheap.
+          </p>
+
+          <p>
+            But note that this is suboptimal. When checking if $12145$ contains
+            a square, this algorithm checks if each of 12, 21, 14, 45, 1214,
+            2145 are squares. For 1214, it checks if 1=1, which it is, and so
+            then it checks if 2=4. But notice that 2=4? will be checked again
+            for 2145. This may not seem like a big deal now, but as $L$ grows,
+            the number of these repeated checks grows too. A better algorithm
+            would avoid these...
+          </p>
+        </div>
+        <button class="accordion_cover">
+          <h2>improved Algorithm $\mathcal{O}\left(L^2\right)$</h2>
+        </button>
+        <div class="accordion_panel">
+          <div class="thin_centre">
+            <pre
+              id="contains_a_square"
+              class="pseudocode"
+              data-line-number="true"
+            >
+            \begin{algorithm}
+            \caption{Contains Square}
+            \begin{algorithmic}
+            \FUNCTION{ContainsSquare}{$A$}
+                \STATE $L = \text{length}(A)$
+                \FOR{$p = 1$ \TO $L//2$}
+                    \STATE $s=0$
+                    \FOR{$i = 0$ \TO $L - p -1$}
+                        \IF{$A[i] = A[i+p]$}
+                            \STATE $s = s + 1$
+                            \IF{$s = p$}
+                                \RETURN TRUE
+                            \ENDIF
+                        \ELSE
+                            \STATE $s=0$
+                        \ENDIF
+                    \ENDFOR
+                \ENDFOR
+                \RETURN FALSE
+            \ENDFUNCTION
+            \end{algorithmic}
+            \end{algorithm}
+        </pre
+            >
+          </div>
+          <h3>Minor Optimisations</h3>
+          <p>
+            There is a small oprimisation to be made. Near the end, there might
+            not be space left to fit a square of length $p$.
+          </p>
+        </div>
+        <p>
+          Implementing this, only square-free strings are allowed through.
+          Enumerating square-free strings of length $L$ over an alphabet of
+          $c>2$ characters is a classical and well-studied problem. See
+          <a href="https://en.wikipedia.org/wiki/Square-free_word"
+            >this Wikipedia article</a
+          >, <a href="https://oeis.org/A006156">this OEIS page</a>
+          and links therein. It is known that as $L$ increases, the number grows
+          as $\Theta(\alpha_c^L)$, for some constant $c-2<\alpha_c< c-1$. The
+          one relevant to us right now is $\alpha_9 \approx 7.8729902$, as we
+          are using the digits $1,\cdots, 9$. This means that the more expensive
+          tests will only be done for $\Theta(\alpha_9^L)$ digit strings instead
+          of $9^L$. This is a very significant decrease in the search space, and
+          for a low cost!
+        </p>
+        <p>
+          When using the (non-zero) digits of base $b$ (that is $1, \cdots,
+          b-1$) there are $(b-1)^L$ digit strings of length $L$. Our original
+          brute force algorithm used an expensive procedure to test each of
+          these. Now, we first filter out the strings containing squares.
+        </p>
+      </div>
+
+      <button class="accordion_cover">
+        <h2>Contains a Balance-Solvable? \(\mathcal{O}\left(L^3\right)\)</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>coming soon</p>
+      </div>
+
+      <button class="accordion_cover">
+        <h2>Contains an Additive-Solvable? \(\mathcal{O}\left(L^4\right)\)</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>coming soon</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>&copy; Adam Furlong September 2025. All rights reserved.</footer>
+  </body>
+
+  <!-- Accordion -->
+  <script>
+    var acc = document.getElementsByClassName("accordion_cover");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+  </script>
+
+  <!-- algorithms -->
+  <script>
+    // pseudocode.renderElement(document.getElementById("quicksort"));
+    pseudocode.renderClass("pseudocode");
+  </script>
+</html>
