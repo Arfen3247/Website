@@ -72,31 +72,40 @@ nav ul.nav-bar {
   margin: 0;
   padding: 0;
   display: flex;
-  background: #222;
+  background: #000000;
 }
 
 ul.nav-bar li a {
   display: block;
-  color: #fff;
+  color: #ffffff;
   padding: 1em 2em;
   text-decoration: none;
-  transition: background 0.5s;
+  transition: all 0.5s ease;
 }
 
 ul.nav-bar li a:hover {
   background: #cc0404;
+  color: #000000;
 }
 
 
 /* Accordion, drop-down section */
 .accordion_cover {
-  background-color: #222;
+  background-color: #000000;
   color: rgb(255, 255, 255);
   cursor: pointer;
   width: 100%;
   text-align: left;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 8px;
+  transition: all 0.5s ease;
+}
+
+/* Hover effect.  */
+.accordion_cover:hover {
+  background-color: #cc0404;
+  border-color: #cc0404;
+  color: #000000
 }
 
 /* Style the accordion panel.  */
@@ -105,16 +114,31 @@ ul.nav-bar li a:hover {
   background-color: rgb(50, 50, 50);
   display: none;
   overflow: hidden;
+  border: 5px solid #000000;
+  outline: 1px solid white;
+  border-radius: 8px;
 }
 
 
 /* Spoilers */
 .spoiler{
   display: inline;
-  color: black;
-  background-color: black;
+  color: #000000;
+  background-color: #000000;
 }
 
 .spoiler:hover {
   color: white;
 }
+
+
+/* Python terminal */
+.python_terminal{
+  color: rgb(255, 255, 255);
+  background-color: #000000; 
+  border: 1px solid rgb(255, 255, 255);
+  font-family: "Consolas", "Courier New", monospace;
+  padding: 6px;
+}
+
+

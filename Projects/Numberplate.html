@@ -3,7 +3,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles.css" />
-    <!-- Allows  algorithms -->
     <script>
       MathJax = {
         tex: {
@@ -40,7 +39,91 @@
     <section>
       <h1>The Numberplate Game</h1>
 
-      <p>some introduction</p>
+      <p>
+        Here is a game a friend taught me on the drive to university, that gave
+        me many hours of entertainment. To illustrate it, let me lay out some
+        definitions:
+      </p>
+      <p>
+        A <u>digit string</u> is an ordered list of numbers (integers from 0 to
+        9 in our case), such as 15397. This is not to be interpreted as fifteen
+        thousand three hundred and ninety seven, but as one followed by five,
+        three, nine, and seven.
+      </p>
+      <p>
+        \(1\times (5-3)+9\div 7\) is an <u>expression</u> of the digit string
+        15397. Between the digits we place some operation from addition,
+        subtraction, multiplication and division. We are allowed to use an
+        operation as many times as we like (including not at all), to use as
+        many parentheses as we like, but we cannot reorder the digits and every
+        two digits must have an operation between them.
+      </p>
+      <p>
+        A <u>solution</u> of the digit string is some expression that evaluates
+        to zero. \(9-9\), \(1+2-3\), \(8-2\times 4\) and \(2-6\div (1+2)\) are
+        solutions of 99, 123, 824 and 2612 respectively. Clearly any digit
+        string which contains a zero can be solved using only multiplications.
+        Eg. \(5\times0\times3\) is a solution of 503. \(1\times (5-3)+9\div 7\)
+        is clearly not a solution to 15397, but can you find one?
+        <span class="spoiler">\((1+5+3-9)\times7\)</span>
+      </p>
+      <p>
+        Given some source of digit strings, the game is to be the first to find
+        a solution. For example, Irish vehicle registration plates
+        (numberplates) take the form 251-WX-15397, so you can use the last
+        section of digits. On the drive to university, my friend and I would
+        play the game on the other cars around us. I like to think I won
+        slightly more often (he was driving).
+      </p>
+    </section>
+    <section>
+      <h1>The Question</h1>
+
+      <p>
+        Now that you know the game, let me introduce the very interesting
+        question:
+      </p>
+
+      <h2>How many digit strings are solvable?</h2>
+      <p>
+        Just kidding, the answer to this is clearly infinitely many. We can
+        solve 11, by using the expression 1-1. Then we can solve any expression
+        containing 11. For example, $abc11xyz$ is solved by $a\times b\times
+        c\times (1-1)\times x\times y\times z$. This is an infinite family of
+        digit strings which have a solution. Among them are 11, 111, 1111,
+        11111, 111111, 1111111 etc.
+      </p>
+
+      <h2>How many digit strings are not solvable?</h2>
+      <p>
+        This is a far less trivial question. Clearly, as we consider longer and
+        longer strings, it becomes harder for them to not have a solution.
+        Indeed, it can be easily shown that the fraction of digit strings of
+        length $L$ which are not solvable tends to 0 as $L$ grows.
+      </p>
+      <p>
+        It is not obvious, however, if there are finitely many or infinitely
+        many unsolvables. To illustrate this a little, let me show you a similar
+        property. A square is a digit string of the form $'XX'$ for some string
+        $'X'$. For example, $11$, $2323$ and $97349734$ are squares, but $23$
+        and $223$ are not. A string is called square-free if none of its
+        substrings are a square. For example, 1, 23531 and 976975 are
+        square-free, but $223$ and $976769$ are not. Similar to the property we
+        are interested in, as $L$ grows, square-free strings of length $L$
+        become exceedingly rare. However, it is known that there are infinitely
+        many square-free strings (as long as you allow more than 2 characters).
+        To learn more about square-free numbers, see
+        <a href="https://en.wikipedia.org/wiki/Square-free_word"
+          >this Wikipedia article</a
+        >, <a href="https://oeis.org/A006156">this OEIS page</a>
+        and links therein.
+      </p>
+
+      <p>
+        After some thinking though, I can assure you that there are finitely
+        many. If the length of a digit string is 20 or more, then I guarantee it
+        is solvable.
+      </p>
 
       <button class="accordion_cover">
         <h2>Proof of Finiteness</h2>
@@ -49,7 +132,43 @@
         <p>coming soon</p>
       </div>
 
+      <p>
+        With this knowledge, we know that we need only check numbers up to
+        $10^{20}$. This is a huge ceiling, which is not too helpful. But, in
+        principle this is a finite search space. Also, we will be able to tell
+        if we finish early.
+      </p>
+
+      <button class="accordion_cover">
+        <h2>When have we found them all?</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>coming soon</p>
+      </div>
+
+      <p>
+        Together, these facts trying with a brute force approach — just check
+        every digit string!
+      </p>
+    </section>
+    <section>
       <h1>Brute Force</h1>
+      <p>
+        A quick search for 'Numberplate Game' finds
+        <a href="https://n-o-r.xyz/2019/02/20/licence-plates.html"
+          >this blog post</a
+        >, where for each number up to 10,000, the author checks how many
+        expressions are solutions. He finds that only 20% of these numbers are
+        unsolvable. (I think there is a small difference to the rules of the
+        game he is playing, but it is in essence the same problem.)
+      </p>
+      <p>
+        I am only interested in whether the string is solvable, so we can go
+        faster! We will first generate all of the expressions, then for each
+        number, iterate through these expressions until we hit a zero, or run
+        out. This should be a dramatic improvement, as we will see there is a
+        god-awful number of possible expressions.
+      </p>
 
       <button class="accordion_cover">
         <h2>Generating all expressions</h2>
@@ -68,15 +187,20 @@
           only solution. It not only needs a division to be solved, it actually
           needs 2!) You can see this is a solution, right? Well, Python can't...
         </p>
-        $$\begin{aligned}>>>\text{print}(1-3/9-4/6) \\ 1.1102230246251565e-16
-        \end{aligned}$$
+        <div class="thin_centre">
+          <div class="python_terminal">
+            <p>>>> print(1-3/9-4/6)</p>
+            <p>1.1102230246251565e-16</p>
+          </div>
+        </div>
         <p>
           We must try to avoid these floating point errors somehow. Consider
           working with pairs of integers $(a,b)$, for $b>0$ and
           $\text{gcd}(a,b)=1$. In this language, $(a,b)$ is understood as $a/b$.
           Then $(a,1)$ would be the integer $a$, and $(0,b)$ would be 0. These
           are the rationals $\mathbb{Q}$, which are closed under the four
-          operations were are using.
+          operations were are using. The operations can then be written purely
+          in terms of integer arithmetic:
         </p>
         $$\begin{aligned} (a,b)+(c,d) &= (a\times d+b\times c, b\times d) \\
         (a,b)-(c,d) &= (a\times d-b\times c, b\times d) \\ (a,b)\times (c,d) &=
@@ -92,17 +216,174 @@
           above. We never need to worry about floating point errors again!
         </p>
         <p>
-          Small note: yes, the expressions now take longer to compute. An
-          addition now requires 3 multiplications, an addition, and a gcd
-          calculation. We can salvage back some time, without sacrificing
-          accuracy, by using integer arithmetic when divisions are not involved.
-          Luckily for us, we already agreed to sort the expressions by the
-          number of divisions. This allows us to do all of our fast integer work
-          first, and then turn to the more expensive fractions approach.
+          Two small comments on this. Firstly, yes, the expressions now take
+          longer to compute. An addition now requires 3 multiplications, an
+          addition, and a gcd calculation. We will deal with this later. For
+          now, it is worth the accuracy. Secondly, the floating point error
+          problem could be avoided altogether by carefully redefining the game
+          is such a way that at every step in the evaluation of the expression,
+          all values must be integers. For example, you could consider 13946 to
+          be unsolvable. This is easy to do when actually playing in person. It
+          is not so easy to ensure we have an integer every time we divide. You
+          are welcome to try that yourself :)
         </p>
       </div>
+      <button class="accordion_cover">
+        <h2>Attempt 2 — Focus on Substrings</h2>
+      </button>
+      <div class="accordion_panel">
+        <div class="thin_centre">
+          <div class="python_terminal">
+            <pre>
+Length          Count          Total             Time(s) 
+-------------------------------------------------------- 
+     1              9              9             0.00000 
+     2             72             81             0.00399 
+     3            455            536             0.15100
+     4           1500           2036             2.62313
+     5           1014           3050            37.65126
+     6             89           3139           299.42060
+</pre
+            >
+          </div>
+        </div>
+        <p>
+          Again the code was run for half an hour. We got further this time! A
+          whole other row! Interstingly, there is far far less unsolvables at
+          this length. We should expect them to go extcinct soon, which is far
+          earlier than the bound of length 19 that we derived. in fact, another
+          length or two would probably do it, but considering that each takes
+          about 10 times as long as the last... let's just write some faster
+          code.
+        </p>
+      </div>
+      <button class="accordion_cover">
+        <h2>Attempt 3 — Necessary Expressions</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          here is another minor improvement. Think about making an expression
+        </p>
+        <p>
+          Sounds like a much faster algorithm. Let's see if it goes any
+          faster...
+        </p>
+        <div class="thin_centre">
+          <div class="python_terminal">
+            <pre>
+>>> Brute_Force_3(base=10)
 
-      <h1>Brute Force but Smarter</h1>
+Length          Count          Total             Time(s) 
+--------------------------------------------------------
+     1              9              9             0.00000 
+     2             72             81             0.00798 
+     3            455            536             0.03721 
+     4           1500           2036             0.88131 
+     5           1014           3050            14.69541 
+     6             89           3139           113.85976 
+     7              1           3140          1005.71130
+--------------------------------------------------------
+</pre
+            >
+          </div>
+        </div>
+        <p>
+          It does! In fact, it reaches the end! Luckily for us, there is only
+          one unsolvable of length 7 and so we know we are done. (This is proven
+          in an earlier section.) If we were unlucky enough that 2 or more
+          survived, our algorithm would have checked all the strings of length
+          8, which would have taken <i>forever</i>...
+        </p>
+        <p>
+          Knowing that we need only check up to length 7, I ran the previous
+          programs again. The first took 2 and a half hours, and the second took
+          forty minutes.
+        </p>
+      </div>
+    </section>
+    <section>
+      <h1>Results</h1>
+      <p>
+        So that's it, we have solved the problem! Now we ask, has anyone done
+        this before? If anyone else had, they would probably have put some
+        evidence of it online. For example, the only unsolvable of length 7 is
+        8985898. Looking this up on the Online Encyclopedia of Integer Sequences
+        (<a href="https://oeis.org/">OEIS</a>), we find that 8985898 appears in
+        exactly one sequence,
+        <a href="https://oeis.org/A288350">A288350</a>$(n)$, which is 1, 12,
+        124, 1251, 12721, 169896, 8985898. Its title reads
+        <i
+          >"Lexically smallest string of $n$ digits from 1...9, such that no
+          formula using the single digits in the given order exists that
+          evaluates to 0."</i
+        >
+        This is exactly the problem we were solving, and it was solved at least
+        as far back as 2017. This saves me the hassle of having to provide you
+        with a list of all of the unsolvable strings, as they already exist.
+      </p>
+      <p>So, how many unsolvables are there:</p>
+      <ul>
+        <li>
+          <p>with 1 digit? Clearly 9, which are 1,2,3,4,5,6,7,8,9.</p>
+        </li>
+        <li>
+          <p>
+            with 2 digits? Clearly 72, which are '$ab$' for
+            $a,b\in\{1,2,3,4,5,6,7,8,9\}$ with $a\neq b$.
+          </p>
+        </li>
+        <li>
+          <p>
+            with 3 digits? See <a href="https://oeis.org/A288353">A288353</a>,
+            there are 455.
+          </p>
+        </li>
+        <li>
+          <p>
+            with 4 digits? See <a href="https://oeis.org/A288354">A288354</a>,
+            there are 1500.
+          </p>
+        </li>
+        <li>
+          <p>
+            with 5 digits? See <a href="https://oeis.org/A288355">A288355</a>,
+            there are 1014.
+          </p>
+        </li>
+        <li>
+          <p>
+            with 6 digits? See <a href="https://oeis.org/A288356">A288356</a>,
+            there are 89.
+          </p>
+        </li>
+        <li>
+          <p>with 7 digits? Only 1, which is 8985898.</p>
+        </li>
+        <li>
+          <p>with >7 digits? None!</p>
+        </li>
+        <li>
+          <p>in total? 3140.</p>
+        </li>
+      </ul>
+      <p>
+        The number for each length $L$>0 is given by
+        <a href="https://oeis.org/A288351">A288351</a>$(L)$, which is 9, 72,
+        455, 1500, 1014, 89, 1, and 0 thereafter.
+      </p>
+      <p>
+        Funny story: before I realised I had to be careful with division,
+        floating point errors caused my code to think 13946 was unsolvable.
+        (Recall the only solution to this string is 1-3/9-4/6.) This made the
+        'total' 3141, and I remember being just a little panicked that $\pi$
+        seemed to show up...
+      </p>
+    </section>
+    <section>
+      <h1>Why I want to go faster</h1>
+    </section>
+    <section>
+      <h1>Chapter 2: Brute Force but Smarter</h1>
       <p>
         The basic idea is to add a series of increasingly expensive filters to
         weed out digit strings that are solvable. This way not all of them need
