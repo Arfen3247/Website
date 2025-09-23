@@ -141,3 +141,7 @@ ul.nav-bar li a:hover {
 }
 
 
+pre[class*="language-"] {
+  background: #000000;
+}
+

@@ -2,9 +2,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles.css" />
+
+    <!-- Math -->
     <script>
       MathJax = {
+        options: {
+          processHtmlClass: "mathjax-process",
+        },
         tex: {
           inlineMath: [
             ["$", "$"],
@@ -20,11 +24,22 @@
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Algorithms -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js"></script>
+
+    <!-- Inserting Code -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css"
+    />
+
+    <!-- My styles -->
+    <link rel="stylesheet" href="../styles.css" />
     <title>The Numberplate Game</title>
   </head>
   <nav>
@@ -38,52 +53,58 @@
 
     <section>
       <h1>The Numberplate Game</h1>
-
       <p>
         Here is a game a friend taught me on the drive to university, that gave
         me many hours of entertainment. To illustrate it, let me lay out some
         definitions:
       </p>
-      <p>
-        A <u>digit string</u> is an ordered list of numbers (integers from 0 to
-        9 in our case), such as 15397. This is not to be interpreted as fifteen
-        thousand three hundred and ninety seven, but as one followed by five,
-        three, nine, and seven.
-      </p>
-      <p>
-        \(1\times (5-3)+9\div 7\) is an <u>expression</u> of the digit string
-        15397. Between the digits we place some operation from addition,
-        subtraction, multiplication and division. We are allowed to use an
-        operation as many times as we like (including not at all), to use as
-        many parentheses as we like, but we cannot reorder the digits and every
-        two digits must have an operation between them.
-      </p>
-      <p>
-        A <u>solution</u> of the digit string is some expression that evaluates
-        to zero. \(9-9\), \(1+2-3\), \(8-2\times 4\) and \(2-6\div (1+2)\) are
-        solutions of 99, 123, 824 and 2612 respectively. Clearly any digit
-        string which contains a zero can be solved using only multiplications.
-        Eg. \(5\times0\times3\) is a solution of 503. \(1\times (5-3)+9\div 7\)
-        is clearly not a solution to 15397, but can you find one?
-        <span class="spoiler">\((1+5+3-9)\times7\)</span>
-      </p>
+      <button class="accordion_cover">
+        <h2>Definitions</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          A <u>digit string</u> is an ordered list of numbers (integers from 0
+          to 9 in our case), such as 15397. This is not to be interpreted as
+          fifteen thousand three hundred and ninety seven, but as one followed
+          by five, three, nine, and seven.
+        </p>
+        <p>
+          \(1\times (5-3)+9\div 7\) is an <u>expression</u> of the digit string
+          15397. Between the digits we place some operation from addition,
+          subtraction, multiplication and division. We are allowed to use an
+          operation as many times as we like (including not at all), to use as
+          many parentheses as we like, but we cannot reorder the digits and
+          every two digits must have an operation between them.
+        </p>
+        <p>
+          A <u>solution</u> of the digit string is some expression that
+          evaluates to zero. \(9-9\), \(1+2-3\), \(8-2\times 4\) and \(2-6\div
+          (1+2)\) are solutions of 99, 123, 824 and 2612 respectively. Clearly
+          any digit string which contains a zero can be solved using only
+          multiplications. Eg. \(5\times0\times3\) is a solution of
+          503.\(1\times (5-3)+9\div 7\) is clearly not a solution to 15397, but
+          can you find one?
+          <span class="spoiler">\((1+5+3-9)\times7\)</span> Can you solve
+          194878? <span class="spoiler">No. You can't. It is impossible.</span>
+        </p>
+      </div>
       <p>
         Given some source of digit strings, the game is to be the first to find
         a solution. For example, Irish vehicle registration plates
-        (numberplates) take the form 251-WX-15397, so you can use the last
-        section of digits. On the drive to university, my friend and I would
-        play the game on the other cars around us. I like to think I won
-        slightly more often (he was driving).
+        (numberplates) take the form 251-WX-13946, so you can use the last
+        section of digits. Can you solve this one?
+        <span class="spoiler">I'll show you later ;)</span>
+        On the drive to university, my friend and I would play the game on the
+        other cars around us. I like to think I won slightly more often (he was
+        driving).
       </p>
     </section>
     <section>
       <h1>The Question</h1>
-
       <p>
         Now that you know the game, let me introduce the very interesting
         question:
       </p>
-
       <h2>How many digit strings are solvable?</h2>
       <p>
         Just kidding, the answer to this is clearly infinitely many. We can
@@ -93,7 +114,6 @@
         digit strings which have a solution. Among them are 11, 111, 1111,
         11111, 111111, 1111111 etc.
       </p>
-
       <h2>How many digit strings are not solvable?</h2>
       <p>
         This is a far less trivial question. Clearly, as we consider longer and
@@ -118,41 +138,508 @@
         >, <a href="https://oeis.org/A006156">this OEIS page</a>
         and links therein.
       </p>
-
       <p>
         After some thinking though, I can assure you that there are finitely
         many. If the length of a digit string is 20 or more, then I guarantee it
         is solvable.
       </p>
-
       <button class="accordion_cover">
         <h2>Proof of Finiteness</h2>
       </button>
       <div class="accordion_panel">
-        <p>coming soon</p>
+        <p>
+          Coming soon. Actually is not essential though, given the 'When have we
+          found them all?' section, because if our program terminates, we have
+          found them all, and so there are finitely many.
+        </p>
       </div>
-
       <p>
         With this knowledge, we know that we need only check numbers up to
         $10^{20}$. This is a huge ceiling, which is not too helpful. But, in
         principle this is a finite search space. Also, we will be able to tell
         if we finish early.
       </p>
-
       <button class="accordion_cover">
         <h2>When have we found them all?</h2>
       </button>
       <div class="accordion_panel">
-        <p>coming soon</p>
+        <p>
+          For each $L>0$, $U(L)$ denotes the number of digit strings of length
+          $L$ that are not solvable. The idea is we calculate $U(1)$, then
+          $U(2), U(3)$ and so on.
+        </p>
+        <h3>When $U(L)=0$</h3>
+        <p>
+          This means that any digit string of length $L$ has a solution. Take
+          any digit string of length $>L$. It has a substring which has length
+          $L$, for example its first $L$ digits. But this substring has a
+          solution, and so the string is solvable. Thus no string of length $>L$
+          is solvable, so we are finished.
+        </p>
+        <p>
+          Thus if we, for each successive length, count how many strings of that
+          length cannot be solved, we can stop searching once we reach a length
+          for which the counter is zero. We haved proved above this will happen
+          no later than length 20, but hopefully sooner! Also, there is another
+          way we may stop...
+        </p>
+        <h3>When $U(L)=1$</h3>
+        <p>
+          This means that only one digit string of length $L$ cannot be solved.
+          Take any digit string of length $>L$. It has (at least) two substrings
+          of length $L$: the ones starting at the first digit and the second
+          digit. There are two possibilities: both them are the unsolvable of
+          length $L$, or otherwise. If otherwise, then at least one of them is
+          not that unsolvable, so has a solution. Then the string would have a
+          solvable substring, so is solvable itself. But if both of them are the
+          unsolvable of length $L$, then their first digits match. Then the
+          first two digits of the string are equal, so the string is solvable.
+          Thus no string of length $>L$ is solvable and we are done.
+        </p>
       </div>
-
       <p>
-        Together, these facts trying with a brute force approach — just check
+        Together, these facts justify trying a brute force approach — just check
         every digit string!
       </p>
     </section>
     <section>
-      <h1>Brute Force</h1>
+      <h1>Chapter 0: Finding Expressions</h1>
+      <p>
+        If you are skimming this page, you can skip this section. All you need
+        to know is that I have a python script to produce the expressions, and I
+        know roughly how many there will be.
+      </p>
+      <p>
+        The goal of this section is to find all of the expressions for a string
+        of length $L$. We denote the number of these by $E(L)$, and I am curious
+        how fast this grows.... Let's start by listing out some small
+        expressions.
+      </p>
+
+      <button class="accordion_cover">
+        <h2>How many expressions are there for small $L$?</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          We denote a string of length $L$ as being the first $L$ letters of the
+          alphabet. Clearly $E(1)=1$ as $a$ is the only expression of the string
+          $a$. There is no space to place an operation!
+        </p>
+        <p>Here are the $E(2)=4$ of a string of length 2:</p>
+        $$ a+b, a-b, a\times b, a\div b$$
+        <p>
+          And here are the $E(3)=24$ of a string of length 3. Check that you
+          agree.
+        </p>
+        <pre class="mathjax-process">
+$$\begin{align} 
+&a+b+c &&a+b-c &&&a+b\times c &&&&a+b\div c \\ 
+&a-b+c &&a-b-c &&&a-b\times c &&&&a-b\div c \\ 
+&a\times b+c &&a\times b-c &&&a\times b\times c &&&&a\times b\div c \\ 
+&a\div b+c &&a\div b-c &&&a\div b\times c &&&&a\div b\div c \\ 
+&a\times (b+c) &&a\times (b-c) &&&(a+ b)\times c &&&&(a- b)\times c \\ 
+&a\div (b+c) &&a\div (b-c) &&&(a+b)\div c &&&&(a- b)\div c
+\end{align} $$
+</pre
+        >
+
+        <p>
+          However we see there is a lot of redundancy in this listing. Everytime
+          $+$ appears, there is another string that is identical except that $+$
+          is replaced by $-$, and vice verasa. The same is true for the pair
+          $\times, \div$. Removing all of the expressions with $-$ or $\div$, we
+          cut down the list by a factor of $2^{L-1}$, a factor of two for each
+          of the $L-1$ operations. So, we can write the above lists more
+          compactly as:
+        </p>
+        <pre class="mathjax-process">
+$$\begin{align}
+&L=1 &&L=2 &&&L=3 \\
+&a &&a+b &&&a+b+c \\
+& &&a\times b &&&a+b\times c \\
+& && &&&a\times b+ c \\
+& && &&&(a+b)\times c \\
+& && &&&a\times (b+ c) \\
+& && &&&a\times b\times c 
+\end{align}$$
+</pre
+        >
+        <p>
+          You can get back the original lists by including the copies of these
+          with various numbers of $+$ and $\times$ replaced with $-$ and $\div$.
+          Using just $+$ and $\times$ then, how many expressions can we make? I
+          find 22, see that you agree. Do not worry about the column titles,
+          they are explained later when I show you the procedure.
+        </p>
+        <pre class="mathjax-process">
+$$\begin{align}
+&\text{Split after 1}, + 
+&&\text{Split after 1}, \times 
+&&&\text{Split after 2} 
+&&&& \text{Split after 3} 
+\\
+&a+b+c+d
+&&a\times(b+c+d)
+&&&a\times b+c+d
+&&&&a\times b\times c+d
+\\
+&a+b+c\times d
+&&a\times(b+c\times d)
+&&&a\times b+c\times d
+&&&&a\times(b+c)+d
+\\
+&a+b\times c+d
+&&a\times(b\times c+d)
+&&&(a+b)\times(c+d)
+&&&&(a+b)\times c+d
+\\
+&a+b\times c\times d
+&&a\times b\times c\times d
+&&&(a+b)\times c\times d
+&&&&(a+b+c)\times d
+\\
+&a+b\times(c+d)
+&&a\times b\times (c+d)
+&&&
+&&&&(a+b\times c)\times d
+\\
+&a+(b+c)\times d
+&&a\times(b+c)\times d
+&&&
+&&&&(a\times b+c)\times d
+\end{align}$$
+</pre
+        >
+        <p>
+          This means that $E(4)=2^3 \times 22 = 176$. Good thing I didn't write
+          them all out...
+        </p>
+      </div>
+
+      <button class="accordion_cover">
+        <h2>Free and Bound Expressions</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          When constructing expressions, we need to know what we need should
+          wrap parentheses around. For example $a+b\times c$ is different to
+          $(a+b)\times c$, but the same as $a+(b\times c)$.
+        </p>
+        <p>
+          An expression is called <u>free</u> if there is an addition or
+          subtraction not within parentheses. Here are some free expressions:
+        </p>
+        $$a+b+c \qquad a+b\times c \qquad a\times b+c$$
+        <p>
+          If a string is not free, we say it is <u>bound</u>. Of the expressions
+          discussed already, the following are bound.
+        </p>
+        $$a\times(b+c) \qquad (a+b)\times c \qquad a\times b\times c$$
+        <p>
+          The number of free and bound strings of length $L$ are denoted by
+          $F(L)$ and $B(L)$ respectively. Looking at the previous lists of
+          expressions, check that you agree $F(1)=0, F(2)=2, F(3)=12, F(4)=88$
+          and $B(1)=0, B(2)=2, B(3)=12, B(4)=88$.
+        </p>
+        <p>
+          At this point we might conjecture that $F(L)=B(L)$ for every $L>1$.
+          This is proved later :)
+        </p>
+      </div>
+
+      <button class="accordion_cover">
+        <h2>The Procedure</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>coming soon. For now, you can read the python implementation.</p>
+      </div>
+
+      <button class="accordion_cover">
+        <h2>Python Implementation</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          We aim to implement the above strategy in Python to find the
+          expressions of length $L$. To do this, we need to know them for length
+          less than $L$. The only expression of length 1 is bound, and we will
+          represent it using a blank symbol, such as a spcae or an underscore,
+          to signify this is where the digit should be placed.
+        </p>
+        <!-- Initialise Code -->
+        <div class="thin_centre">
+          <pre
+            style="max-height: 300px; overflow: auto"
+          ><code class="language-python"># initialise
+blank = ' '
+free_exprs = [[], []]
+bound_exprs = [[], [blank]]</code>
+</pre>
+        </div>
+        <p>
+          Then we use the procedure designed above to find the free and bound
+          expressions of length $L$. These will need to be appended to
+          'free_exprs' and 'bound_exprs' respectively to help find the
+          expressions of length $L+1$ and so on. Because it is called only a
+          handful of times, it does not need to be hyper-optimised, so I write
+          them in these 'extend' blocks for readability.
+        </p>
+        <pre
+          style="max-height: 300px; overflow: auto"
+        ><code class="language-python">def find_next_exprs(
+  free_exprs, bound_exprs, 
+  ops_add, ops_mult):
+
+    L = len(free_exprs)
+    new_free_exprs = []
+    new_bound_exprs = []
+
+    # split after first digit
+
+    new_free_exprs.extend(
+        f"{blank}{op}{right}" 
+        for op in ops_add
+        for right in free_exprs[-1]
+    )
+    
+    new_free_exprs.extend(
+        f"{blank}{op}{right}" 
+        for op in ops_add
+        for right in bound_exprs[-1]
+    )
+    
+    new_bound_exprs.extend(
+        f"{blank}{op}({right})" 
+        for op in ops_mult
+        for right in free_exprs[-1]
+    )
+    
+    new_bound_exprs.extend(
+        f"{blank}{op}{right}" 
+        for op in ops_mult
+        for right in bound_exprs[-1]
+    )
+
+    for i in range(2, L):
+      # split after i'th digit
+
+        new_free_exprs.extend(
+            f"{left}{op}{right}" 
+            for left in bound_exprs[i]
+            for op in ops_add
+            for right in free_exprs[L-i]
+        )
+        
+        new_free_exprs.extend(
+            f"{left}{op}{right}" 
+            for left in bound_exprs[i]
+            for op in ops_add
+            for right in bound_exprs[L-i]
+        )
+
+        new_bound_exprs.extend(
+            f"({left}){op}({right})" 
+            for left in free_exprs[i]
+            for op in ops_mult
+            for right in free_exprs[L-i]
+        )
+
+        new_bound_exprs.extend(
+            f"({left}){op}{right}" 
+            for left in free_exprs[i]
+            for op in ops_mult
+            for right in bound_exprs[L-i]
+        )
+
+    return new_free_exprs, new_bound_exprs
+</code></pre>
+        <button class="accordion_cover">
+          <h2>Testing</h2>
+        </button>
+        <div class="accordion_panel">
+          <p>
+            Using a small program as follows, we can verify that it gives the
+            correct expressions.
+          </p>
+
+          <pre><code class="language-python">def print_exprs(ops_add, ops_mult, L_max):
+    free_exprs = [[], []]
+    bound_exprs = [[], [blank]]
+    for L in range(2, L_max):
+        new_free_exprs, new_bound_exprs = find_next_exprs(
+            free_exprs, bound_exprs, ops_add, ops_mult)
+        free_exprs.append(new_free_exprs)
+        bound_exprs.append(new_bound_exprs)
+    
+        a = len(new_free_exprs)
+        b = len(new_bound_exprs)
+        print()
+        print(f"Free: F({L})={a}. Bound: B({L})={b}. Total: E({L})={a+b}")
+        print(new_free_exprs)
+        print(new_bound_exprs)
+</code></pre>
+
+          <p>
+            Using <span><code class="language-python">ops_add='+-'</code></span
+            >,
+            <span><code class="language-python">ops_mult='*/'</code></span> and
+            <span><code class="language-python">L_max=4</code></span
+            >, we can get the expressions of length 2 and 3. To make them easier
+            to read, we use
+            <span><code class="language-python">blank='a'</code></span
+            >.
+          </p>
+          <div class="thin_centre">
+            <div class="python_terminal">
+              <pre>
+>>> print_exprs('+-', '*/', 4)
+
+Free: F(2)=2. Bound: B(2)=2. Total: E(2)=4
+['a+a', 'a-a']
+['a*a', 'a/a']
+
+Free: F(3)=12. Bound: B(3)=12. Total: E(3)=24
+['a+a+a', 'a+a-a', 'a-a+a', 'a-a-a', 
+'a+a*a', 'a+a/a', 'a-a*a', 'a-a/a', 
+'a*a+a', 'a*a-a', 'a/a+a', 'a/a-a']
+['a*(a+a)', 'a*(a-a)', 'a/(a+a)', 'a/(a-a)', 
+'a*a*a', 'a*a/a', 'a/a*a', 'a/a/a', 
+'(a+a)*a', '(a+a)/a', '(a-a)*a', '(a-a)/a']</pre
+              >
+            </div>
+          </div>
+          <p>
+            We can also check all of the expressions of length 4 using only
+            addition and multiplication, using
+            <span><code class="language-python">ops_add='+'</code></span
+            >,
+            <span><code class="language-python">ops_mult='*'</code></span> and
+            <span><code class="language-python">L_max=5</code></span
+            >.
+          </p>
+          <div class="thin_centre">
+            <div class="python_terminal">
+              <pre>
+Free: F(2)=1. Bound: B(2)=1. Total: E(2)=2
+['a+a']                                                                           
+['a*a']
+
+Free: F(3)=3. Bound: B(3)=3. Total: E(3)=6
+['a+a+a', 'a+a*a', 'a*a+a']
+['a*(a+a)', 'a*a*a', '(a+a)*a']
+
+Free: F(4)=11. Bound: B(4)=11. Total: E(4)=22
+['a+a+a+a', 'a+a+a*a', 'a+a*a+a', 
+'a+a*(a+a)', 'a+a*a*a', 'a+(a+a)*a', 'a*a+a+a', 
+'a*a+a*a', 'a*(a+a)+a', 'a*a*a+a', '(a+a)*a+a']
+['a*(a+a+a)', 'a*(a+a*a)', 'a*(a*a+a)', 
+'a*a*(a+a)', 'a*a*a*a', 'a*(a+a)*a', '(a+a)*(a+a)', 
+'(a+a)*a*a', '(a+a+a)*a', '(a+a*a)*a', '(a*a+a)*a']
+        </pre
+              >
+            </div>
+          </div>
+          <p>Looks like we are working perfectly :)</p>
+        </div>
+      </div>
+
+      <button class="accordion_cover">
+        <h2>How many expressions are there?</h2>
+      </button>
+      <div class="accordion_panel">
+        <p>
+          To get an idea, let us run the following code. It is nothing special,
+          just has some pretty print statements thrown in.
+        </p>
+        <button class="accordion_cover">
+          <h2>Counting Code</h2>
+        </button>
+        <div class="accordion_panel">
+          <pre><code class="language-python">def print_num_of_exprs(ops_add, ops_mult, L_max):
+
+    print(f"{'Length':<{6}}"
+          f"{'Free':>{10}}"      
+          f"{'Bound':>{10}}"  
+          f"{'Total':>{10}}"
+          )
+    print("-" * 36)
+    print(f"{1:>6}"
+          f"{0:>10}" 
+          f"{1:>10}" 
+          f"{1:>10}"
+          )
+
+    free_exprs = [[], []]
+    bound_exprs = [[], [blank]]
+
+    for L in range(2, L_max):
+        new_free_exprs, new_bound_exprs = find_next_exprs(
+            free_exprs, bound_exprs, ops_add, ops_mult)
+        free_exprs.append(new_free_exprs)
+        bound_exprs.append(new_bound_exprs)
+    
+        a = len(new_free_exprs)
+        b = len(new_bound_exprs)
+        print(f"{L:>6}"
+          f"{a:>10}" 
+          f"{b:>10}" 
+          f"{a+b:>10}"
+          )</code></pre>
+        </div>
+        <p>
+          Running this, we find there are... dangerously many. Quite a few,
+          even. If we need to use the expressions of length 10, it will take
+          forever, there are 100 billion of them! And God help us if we need the
+          longer lengths, I don't even have the memory to store them!
+        </p>
+        <div class="thin_centre">
+          <div class="python_terminal">
+            <pre>
+>>> print_num_of_exprs('+-', '*/'', 12)
+
+Length      Free     Bound     Total
+------------------------------------
+     2         2         2         4
+     3        12        12        24
+     4        88        88       176
+     5       720       720      1440
+     6      6304      6304     12608
+     7     57792     57792    115584
+     8    547712    547712   1095424
+     9   5323008   5323008  10646016
+    10  52761088  52761088 105522176
+MemoryError
+            </pre>
+          </div>
+        </div>
+        <p>
+          Searching for this last column on the OEIS suggests that $E(L) =$
+          <a href="https://oeis.org/A156017">A156017</a>$(L-1)$. I later prove
+          this to be the case, from which it follows that
+        </p>
+        $$ E(L) \sim \frac{\sqrt{3\sqrt{2}-4}}{4\sqrt{\pi}}
+        \frac{\left(6+4\sqrt{2}\right)^L}{L^{3/2}}, $$
+        <p>
+          in the sense that $f(n)\sim g(n) \iff \lim\limits_{n\to\infty}
+          \frac{f(n)}{g(n)} = 1$. From this it is immediate that
+        </p>
+        $$ \lim\limits_{L\to\infty} \frac{E(L+1)}{E(L)} = 6+4\sqrt{2}$$
+        <p>
+          which is to say that each time we increase the length by one, the
+          number of expressions grows by about a factor of $6+4\sqrt{2} \approx
+          11.65685$. This grows even faster than the number of digit strings of
+          length $L$! (assuming we allow less than 12 digits.)
+        </p>
+        <button class="accordion_cover">
+          <h2>Proofs</h2>
+        </button>
+        <div class="accordion_panel">
+          <p>Coming soon :)</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h1>Chapter 1: Brute Force</h1>
       <p>
         A quick search for 'Numberplate Game' finds
         <a href="https://n-o-r.xyz/2019/02/20/licence-plates.html"
@@ -166,26 +653,87 @@
         I am only interested in whether the string is solvable, so we can go
         faster! We will first generate all of the expressions, then for each
         number, iterate through these expressions until we hit a zero, or run
-        out. This should be a dramatic improvement, as we will see there is a
+        out. This should be a dramatic improvement, as we saw there is a
         god-awful number of possible expressions.
       </p>
 
       <button class="accordion_cover">
-        <h2>Generating all expressions</h2>
+        <h2>Rough Blueprint</h2>
       </button>
       <div class="accordion_panel">
-        <p>coming soon</p>
+        <p>
+          Here is the rough blueprint of our method. There are a few things to
+          note. The expressions can be made using the procedure of Chapter 0. We
+          do not even consider digit strings that contain a zero, as they are
+          trivially solvable. For each steo in the while loop, we increment the
+          length by one and are counting the number of arrays of this that do
+          not have a solution. As we proved earlier if this count is either 0 or
+          1 we can stop.
+        </p>
+        <pre><code class="language-python">import itertools
+        
+base = 10
+ops_mult='+-'
+ops_mult='*/'
+digits = list(range(1, base))
+
+length = 1
+count = base-1
+total = count 
+
+while count > 1:
+    length += 1
+    
+    # find expressions with new length
+
+    count = 0
+    for array in itertools.product(digits, repeat=length):
+        if has_no_solution(array):
+            count += 1
+    total += count
+</code></pre>
       </div>
 
       <button class="accordion_cover">
         <h2>Being Careful with Division</h2>
       </button>
       <div class="accordion_panel">
+        <h3>Problem 1 — Division by Zero</h3>
+        <p>
+          Imagine we are trying to check if $7123$ is solvable, and we try the
+          expression $7\div(1+2-3)$. Our poor python script would not be happy,
+          that's for sure.
+        </p>
+        <div class="thin_centre">
+          <div class="python_terminal">
+            <p>>>> print(7/(1+2-3))</p>
+            <p>ZeroDivisionError: division by zero</p>
+          </div>
+        </div>
+        <p>
+          This problem can easily be avoided, though. If the operation '$a\div
+          b$' raises this error, it is because $b=0$. Clearly then $a\times
+          b=0$. So, if we were to first try $7\times (1+2-3)$, this would give
+          zero. We would stop trying expressions, and so would never try $7\div
+          (1+2-3)$.
+        </p>
+
+        <p>
+          So, imagine if we sort the expressions by the number of divisions.
+          Then, we would never try $a\div b$ without first verifying $a\times b$
+          was non-zero, which means $b$ is non-zero and $a\div b$ is not
+          problematic. The cost to sorting the strings like this is not
+          relatively large, as it needs to be done only once, when the list of
+          expressions is generated.
+        </p>
+
+        <h3>Problem 2 — Floating Point Errors</h3>
         <p>
           The string 13946 is particularly annoying to work with, but serves as
-          a good example. It can be solved by $1-3/9-4/6$. (In fact, this is the
-          only solution. It not only needs a division to be solved, it actually
-          needs 2!) You can see this is a solution, right? Well, Python can't...
+          a good example. It can be solved by $1-3\div9-4\div6$. (In fact, this
+          is the only solution. It not only needs a division to be solved, it
+          actually needs 2!) You can see this is a solution, right? Well, Python
+          can't...
         </p>
         <div class="thin_centre">
           <div class="python_terminal">
@@ -218,91 +766,173 @@
         <p>
           Two small comments on this. Firstly, yes, the expressions now take
           longer to compute. An addition now requires 3 multiplications, an
-          addition, and a gcd calculation. We will deal with this later. For
-          now, it is worth the accuracy. Secondly, the floating point error
-          problem could be avoided altogether by carefully redefining the game
-          is such a way that at every step in the evaluation of the expression,
-          all values must be integers. For example, you could consider 13946 to
-          be unsolvable. This is easy to do when actually playing in person. It
-          is not so easy to ensure we have an integer every time we divide. You
-          are welcome to try that yourself :)
+          addition, and a gcd calculation. But we need the accuracy this
+          provides. Luckily, we already agreed to sort the expressions by how
+          many divisions they have. So, we can use integer arithmetic on the
+          first group, those with no divisions. Then, use the fractions approach
+          only for the rest. This should salvage back some time.
+        </p>
+        <p>
+          Secondly, the floating point error problem could be avoided altogether
+          by carefully redefining the game is such a way that at every step in
+          the evaluation of the expression, all values must be integers. For
+          example, you could consider 13946 to be unsolvable, because in the
+          steops of calculating $1-3\div9-4\div6$ you have some non-integers
+          $1/3$ and $2/3$. This is easy to do when actually playing in person.
+          It is not so easy, and certainly would be slow, to ask the program to
+          ensure we have an integer every time we divide. You are welcome to try
+          that yourself :)
         </p>
       </div>
       <button class="accordion_cover">
-        <h2>Attempt 2 — Focus on Substrings</h2>
-      </button>
-      <div class="accordion_panel">
-        <div class="thin_centre">
-          <div class="python_terminal">
-            <pre>
-Length          Count          Total             Time(s) 
--------------------------------------------------------- 
-     1              9              9             0.00000 
-     2             72             81             0.00399 
-     3            455            536             0.15100
-     4           1500           2036             2.62313
-     5           1014           3050            37.65126
-     6             89           3139           299.42060
-</pre
-            >
-          </div>
-        </div>
-        <p>
-          Again the code was run for half an hour. We got further this time! A
-          whole other row! Interstingly, there is far far less unsolvables at
-          this length. We should expect them to go extcinct soon, which is far
-          earlier than the bound of length 19 that we derived. in fact, another
-          length or two would probably do it, but considering that each takes
-          about 10 times as long as the last... let's just write some faster
-          code.
-        </p>
-      </div>
-      <button class="accordion_cover">
-        <h2>Attempt 3 — Necessary Expressions</h2>
+        <h2>Python Implementation</h2>
       </button>
       <div class="accordion_panel">
         <p>
-          here is another minor improvement. Think about making an expression
+          Using everything we have talked about, let's put this into action.
+          First, when we generate the new expressions, we need to split them up
+          into those with divisions, and those without. Also, we must order the
+          ones with divisions by how many divisions they have. This can be done
+          with the following function.
         </p>
-        <p>
-          Sounds like a much faster algorithm. Let's see if it goes any
-          faster...
-        </p>
-        <div class="thin_centre">
-          <div class="python_terminal">
-            <pre>
->>> Brute_Force_3(base=10)
 
-Length          Count          Total             Time(s) 
---------------------------------------------------------
-     1              9              9             0.00000 
-     2             72             81             0.00798 
-     3            455            536             0.03721 
-     4           1500           2036             0.88131 
-     5           1014           3050            14.69541 
-     6             89           3139           113.85976 
-     7              1           3140          1005.71130
---------------------------------------------------------
-</pre
-            >
-          </div>
-        </div>
+        <pre><code class="language-python">def order_exprs_by_divs(exprs, length):
+    """
+    Given a list of expressions, and their common length, 
+    returns two arrays. First, those without division. 
+    Second, those with division, sorted by how many divisions are used.
+    """
+    exprs_wo_div = []
+    temp = [[] for _ in range(length)]
+    
+    for expr in exprs:
+        div_count = expr.count('/')
+        if div_count == 0:
+            exprs_wo_div.append(expr)
+        else:
+            temp[div_count].append(expr)
+
+    exprs_w_div = sum(temp, [])
+    return exprs_wo_div, exprs_w_div</code></pre>
         <p>
-          It does! In fact, it reaches the end! Luckily for us, there is only
-          one unsolvable of length 7 and so we know we are done. (This is proven
-          in an earlier section.) If we were unlucky enough that 2 or more
-          survived, our algorithm would have checked all the strings of length
-          8, which would have taken <i>forever</i>...
+          We will need to evaluate these expressions over each array of values.
+          To prepare for this, we replace the blank character in a smart way.
+          What I have chosen to do is replace the i'th appearance of the balnk
+          character with 'x[i]', starting with i=0. Then, we can evaluate the
+          string by just passing in an array of values called x. For example,
+          using a as the blank character, the expression
+          <span><code class="language-python">'a*(a+a)'</code></span> would then
+          become
+          <span><code class="language-python">'x[0]*(x[1]+x[2])'</code></span
+          >. Using the array of values
+          <span><code class="language-python">x=[1,2,3]</code></span
+          >, the expression would give 1*(2+3)=5. Precompiling the expressions
+          in advance like this also is just way faster than doing each time.
         </p>
+        <pre><code class="language-python">def precompile_exprs(exprs, indices):
+    """
+    Precompiles the expressions.
+    Replaces blank with 'x[{}]',  then '{}' with the integers 0,1,... from indices.
+    Must use eval(expr, {}, {x:values}) to evaluate.
+    """
+    return [compile(expr.replace(blank, 'x[{}]').format(*indices), 'string', 'eval') 
+            for expr in exprs]</code></pre>
         <p>
-          Knowing that we need only check up to length 7, I ran the previous
-          programs again. The first took 2 and a half hours, and the second took
-          forty minutes.
+          Next, we need to actually evaluate them when given a digit string, and
+          stop if we hit a zero. We do integer arithmetic on the ones without
+          divisions, and rational arithemtic on the rest. That way, if we find a
+          zero without using a division, we save ourselves from needing to use
+          rational arithmetic.
         </p>
+        <pre><code class="language-python">from fractions import Fraction
+def has_no_solution(array, exprs_wo_div, exprs_w_div):
+    """
+    False if any expression evaluates to 0, True otherwise.
+    Checks expressions in order of increasing 
+    number of divisions
+    """
+    namespace = {'x': array}
+    for expr in exprs_wo_div:
+        if eval(expr, {}, namespace) == 0:
+            return False
+        
+    namespace = {'x': [Fraction(v) for v in array]}
+    for expr in exprs_w_div:
+        if eval(expr, {}, namespace) == 0:
+            return False
+        
+    return True</code></pre>
+        <p>
+          With these, out blueprint now looks like this. All that is needed is
+          some print statements to show the count at the end of each loop, but
+          I'll let you design your own.
+        </p>
+        <pre><code class="language-python">
+base = 10
+ops_add = '+-'
+ops_mult = '*/'
+
+
+# initial set up
+start_message(base)
+start_time = time.time()
+digits = list(range(1, base))
+length = 1
+count = base-1
+total = count
+count_per_length = [0,count]
+
+
+while count > 1:
+    length += 1
+    F, B = find_next_exprs(free_exprs, bound_exprs, ops_add, ops_mult)
+    free_exprs.append(F)
+    bound_exprs.append(B)
+
+    exprs_wo_div, exprs_w_div = order_exprs_by_divs(F+B, length)
+    exprs_wo_div = precompile_exprs(exprs_wo_div, list(range(length)))
+    exprs_w_div = precompile_exprs(exprs_w_div, list(range(length)))
+
+    count = 0
+    for array in itertools.product(digits, repeat=length):
+        if has_no_solution(array, exprs_wo_div, exprs_w_div):
+            count += 1
+    
+    count_per_length.append(count)
+    total += count
+print(count_per_length)
+        </code></pre>
       </div>
     </section>
     <section>
-      <h1>Results</h1>
+      <h1>Chapter 2: Results</h1>
+      <p>
+        Running the python program built above, we find that it terminates at
+        length 7. There are exactly 3140 digit strings which have no solution,
+        the longest of them being 8985898 — the only unsolvable of length 7.
+      </p>
+      <div class="thin_centre">
+        <div class="python_terminal">
+          <pre>
+  Length     Count     Total        Time(s)
+  -----------------------------------------
+       1         9         9        0.00100
+       2        72        81        0.00299
+       3       455       536        0.07879
+       4      1500      2036        1.98668
+       5      1014      3050       20.64676
+       6        89      3139      108.63134
+       7         1      3140     1236.94141
+  -----------------------------------------</pre
+          >
+        </div>
+      </div>
+      <p>
+        It does take a while to get there though. All but 90 of them were found
+        in 20 seconds, but we did not finish for another 20 minutes! This is
+        what we get for using brute force... Also, I am sure you can imagine the
+        original versions of this code took <i>hours</i> to run.
+      </p>
       <p>
         So that's it, we have solved the problem! Now we ask, has anyone done
         this before? If anyone else had, they would probably have put some
@@ -318,7 +948,7 @@ Length          Count          Total             Time(s)
           evaluates to 0."</i
         >
         This is exactly the problem we were solving, and it was solved at least
-        as far back as 2017. This saves me the hassle of having to provide you
+        as far back as 2017. This saves me the hassle of having to write you
         with a list of all of the unsolvable strings, as they already exist.
       </p>
       <p>So, how many unsolvables are there:</p>
@@ -378,10 +1008,23 @@ Length          Count          Total             Time(s)
         'total' 3141, and I remember being just a little panicked that $\pi$
         seemed to show up...
       </p>
+      <p>
+        So there we go. There are 3140 that cannot be solved. So that's the end
+        right? No.
+      </p>
     </section>
     <section>
       <h1>Why I want to go faster</h1>
+      <p>Coming soon</p>
+      <p>
+        For one thing, I'm a masochist with an addiction to optimisation. The
+        more important reason, is why are we using the digits $0,\cdots, 9$? The
+        game can of course be played for digits $0, \cdots, b-1$ for any other
+        integer $b>1$. What does the answer look like then? You might notice,
+        that I always had a variable called 'base'...
+      </p>
     </section>
+    <!-- 
     <section>
       <h1>Chapter 2: Brute Force but Smarter</h1>
       <p>
@@ -531,6 +1174,7 @@ Length          Count          Total             Time(s)
         <p>coming soon</p>
       </div>
     </section>
+     -->
 
     <!-- Footer -->
     <footer>&copy; Adam Furlong September 2025. All rights reserved.</footer>
@@ -559,4 +1203,8 @@ Length          Count          Total             Time(s)
     // pseudocode.renderElement(document.getElementById("quicksort"));
     pseudocode.renderClass("pseudocode");
   </script>
+
+  <!-- code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-python.min.js"></script>
 </html>

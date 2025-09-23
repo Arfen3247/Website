@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Projects</title>
   </head>
   <body>
     <nav>
@@ -158,6 +159,8 @@
       </div>
       <p>
         The following are 'ready' soon, I am in the process of writing them up.
+        These are just some recreational math problems, that I try to solve
+        using some questionable python code.
       </p>
 
       <button class="accordion_cover">
@@ -199,7 +202,7 @@
           we would play the game on the other cars around us. I won slightly
           more often (he was driving).
         </p>
-        <h3>Some questions</h3>
+        <h3>The Question</h3>
         <p>
           Firstly, how many digit strings can be solved? This answer is quite
           clearly infinity. Since 11 is solvable, so is anything that contains
@@ -211,7 +214,16 @@
           cannot be solved? As strings get longer, it becomes easier to solve
           them, so we expect the unsolvable strings to get increasingly rare.
           But, are there only finitely many of them? If so, what is the largest
-          of them? Have a think about it.
+          of them?
+        </p>
+        <h3>
+          The Project — will be put <a href="Projects/Numberplate.html">here</a>
+        </h3>
+        <p>
+          I try to solve the above problem with some python code, just using a
+          brute force approach. After that, I come up with a slightly larger
+          problem. Solving this requires more efficient approaches, such as
+          using a Breadth-First Search over a Trie stuctrure. All coming soon!
         </p>
       </div>
 
@@ -229,176 +241,9 @@
         <p>An interesting probability question I worked on!</p>
       </div>
       <p>
-        The following are nowhere near ready, so don't expect an update anytime
-        soon. Feel free to ask me about them though, I have thought about them a
-        lot, and have some scraps written in places.
-      </p>
-      <!--  
-      <button class="accordion_cover">
-        <h3>VAMPs — Violators of A Monotonic Property</h3>
-      </button>
-      <div class="accordion_panel">
-        <p>
-          I was feeling particularly like a cosmologist when I named this :)
-          There is a family of enumeration problems such as the Numberplate Game
-          above, where the digit strings we are looking for naturally form a
-          Trie structure. Instead of searching through all digit strings, we
-          need only search through this tree. For example, by depth-first or
-          breadth-first seacrhes, which have their own advantages.
-        </p>
-        <img
-          src="images/Project/Trees/tree_basic.jpg"
-          alt="tree_basic"
-          style="width: 300px"
-        />
-        <p>
-          I am interested in the breadth-first approach. At the cost of holding
-          the whole Trie in memory, we can construct an enumeration algorithm
-          with significantly improved time complexity. Admittedly, in most cases
-          this is largely useless, as the memory cost gives a ceiling to how
-          many terms of the sequence can be reached. The ones it does reach
-          though, it reaches far faster than similar methods.
-        </p>
-
-        <p>
-          This serves as a sequel to the Numberplate Game above, so I'll finish
-          that first!
-        </p>
-      </div>
-    -->
-
-      <button class="accordion_cover">
-        <h3>Rubik's Cube — Last Layer Lunatics</h3>
-      </button>
-      <div class="accordion_panel">
-        <!--  
-        <p>
-          While I am no longer a speedcuber, from time to time I still fidget
-          with and think about Rubik's cubes. The last step in many method of
-          solving the cube is the last layer. There are in essence 4 objectives:
-          to orient and permute the corners and edges. While more advanced
-          methods can complete more than one of these objectives in single
-          stages, many beginner's methods are split into these 4 stages, using
-          some algorithm to complete each. This is called '4-look last layer',
-          or 4LLL, and is really the minimum number of algorithms required to
-          solve the cube. These algorithms essentially give a directed graph
-          structure to the set of states of the last layer. A true beginner may
-          not know how to efficiently traverse this graph, and may choose paths
-          which loop back on themselves. With experience, one learns to
-          distinguish between these states. However, by this time, one learns
-          more algorithms to deal with these cases in a more efficient way,
-          moving towards a faster 2LLL method and removing the need for
-          efficient graph traversal. My question is then this rather unimportant
-          one: how move-efficient can you get using only the 4LLL algorithms? On
-          this graph structure they define, what are the optimal paths to the
-          solved state, and what is the average number of moves required?
-          Answering these questions can be done using a Breadth-First Search
-          backwards from the solved state, which can be implemented in a quick
-          python script...
-        </p>
-        -->
-        <p>
-          Using only a limited number of algorithms, like those of a
-          4-Look-Last-Layer approach, what is the average number of moves needed
-          to solve the last layer of a Rubik's cube? These algorithms would link
-          the last-layer states into a connected graph, and this question can be
-          answered by traversing the graph to, or from, the solved state. A
-          simple project, that I haven't found time to work on yet...
-        </p>
-      </div>
-
-      <button class="accordion_cover">
-        <h3>Contour Integration as a Root-Finding Method</h3>
-      </button>
-      <div class="accordion_panel">
-        <p>This is a really bad method.</p>
-        <p>
-          Root-finding is the problem of finding where a function is zero. In
-          the diagram below, it means finding where the curve crosses the
-          \(x\)-axis. This location is called the root, and is denoted \(x_0\).
-          Sometimes, we cannot solve this exactly, and must turn to numerically
-          approximating it. There are many good methods to do this. Using \(N\)
-          evaluations, the bisection method can achieve an error that is
-          \(\mathcal{O}(2^{-N})\), and assuming the function is 'nice', there
-          are much faster methods available.
-        </p>
-        <img class="centre" src="images/root_finding.jpg" style="width: 50%" />
-        <p>
-          To use this new method, we must place several strong assumptions on
-          the function \(f\). First, there exists a complex extension of \(f\)
-          on some known open subset \(U\subset\mathbb{C}\) that contains the
-          root \(z_0\) we want. Second, we can construct some loop \(\gamma\)
-          within \(U\) that encloses \(z_0\). We also need the winding number of
-          \(\gamma\) about \(z_0\) to be 1, and for \(z_0\) to be zero of order
-          one of \(f\).
-        </p>
-        <p>
-          Here is a schematic diagram of the complex plane around the root
-          \(z_0\). The dashed line represents the boundary of \(U\). Within this
-          region, \(f\) is assumed to be holomorphic (very very smooth and
-          nice). The loop \(\gamma\) is within \(U\), and goes around \(z_0\)
-          once, counter-clockwise.
-        </p>
-        <img
-          class="centre"
-          src="images/root_finding_2.jpg"
-          style="width: 50%"
-        />
-        <p>
-          Then, if we integrate \(z/f(z)\) and \(1/f(z)\) along the curve
-          \(\gamma\), the resulting ratio will be the root we are looking for!
-        </p>
-        $$\left.\oint_\gamma\frac{z}{f(z)}dz \right/
-        \oint_\gamma\frac{1}{f(z)}dz = z_0 $$
-        <p>
-          This is called a coutour integral, where \(\gamma\) is the contour.
-          Evaluating these can be fun, but most analytic methods revolve around
-          knowing the singularities of the integrand. That is, where the
-          function to be integrated diverges. In this case, there is exactly
-          one, and it is \(z_0\)... but we don't know where it is!
-          <i>That is the whole point!</i> So we must turn to numerical
-          approximation.
-        </p>
-        <p>
-          This still doesn't sound too awful. Just numerically approximate the
-          integral, and this will still approximate the root. Using a smooth
-          contour \(\gamma\), and numerically integrating using the trapezoid
-          method with \(N\) evaluations, we can show that the resulting error
-          will drop faster than all powers of \(N\). What we cannot do, however,
-          is guarantee that the error will drop faster than that of the
-          bisection method. Which is embarrassing, as that is perhaps the most
-          simple root-finding algorithm, and this is far, far more expensive!
-        </p>
-        <p>
-          So from both analytical and numerical points of view, this method is
-          useless. But because it pops out of some really nice maths, it gets
-          rediscovered from time to time. It got a bit of media fanfare when it
-          was used offhand in
-          <a href="https://link.springer.com/article/10.1007/s00283-020-09966-0"
-            >this paper</a
-          >
-          from 2020. The author derived a transcendental equation, the root of
-          which was a number that solved
-          <a
-            href="https://en.wikipedia.org/wiki/Goat_grazing_problem#Interior_grazing_problem"
-            >the Grazing Goat problem</a
-          >
-          . At the end, the author constructs such an integral from the
-          equation, and claims this is a <i>"closed-form solution"</i> for the
-          root. I have strong opinions on this wording — it is a load of shite.
-          Perhaps I will elaborate sometime...
-        </p>
-        <p>
-          Anyway, despite the fact the method is terrible, I did spend some time
-          thinking about how to improve it. The rough goal is to
-          <i>steel-man</i> the method — to make a stronger version of it, and
-          then to demonstrate this stronger version is still bad. (If you want
-          some spoilers, ask me.)
-        </p>
-      </div>
-
-      <p>
-        If you have any problems you think I would enjoy, please do share ;)
+        For other pieces of maths I find interesting, see the
+        <a href="Maths.html">Maths</a> section. And, If you have any problems
+        you think I would enjoy, please do share :)
       </p>
     </section>
 
